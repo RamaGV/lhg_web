@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
-import Hero from '../sections/Hero';
+import HeroSection from '../sections/HeroSection';
 import AboutSection from '../sections/AboutSection';
 import OperationsSection from '../sections/OperationsSection';
 import SustainabilitySection from '../sections/SustainabilitySection';
@@ -12,7 +12,7 @@ const Home: React.FC = () => {
     <>
       <Navbar />
       <main>
-        <Hero />
+        <HeroSection />
         <AboutSection />
         <OperationsSection />
         <SustainabilitySection />

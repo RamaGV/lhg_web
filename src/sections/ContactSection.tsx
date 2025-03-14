@@ -1,7 +1,6 @@
-import React from 'react';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
 
-const ContactSection: React.FC = () => {
+export default function ContactSection() {
   return (
     <section id="contact" className="py-24 bg-light">
       <div className="container-custom">
@@ -129,22 +128,7 @@ const ContactSection: React.FC = () => {
             </div>
           </div>
         </div>
-        
-        {/* Mapa */}
-        <div className="mt-16 rounded-xl overflow-hidden shadow-lg h-96 relative">
-          {/* Aquí normalmente iría un mapa interactivo con Google Maps o similar */}
-          {/* Por ahora usamos una imagen de placeholder */}
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?ixlib=rb-4.0.3')] bg-cover bg-center">
-            <div className="absolute inset-0 bg-primary/20"></div>
-          </div>
-          <div className="absolute top-8 left-8 bg-white p-4 rounded-lg shadow-md">
-            <h4 className="font-bold text-primary">LHG Mining</h4>
-            <p className="text-sm text-gray-700">Oficina central, São Paulo</p>
-          </div>
-        </div>
       </div>
     </section>
   );
 };
-
-export default ContactSection; 
