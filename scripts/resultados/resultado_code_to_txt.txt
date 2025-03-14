@@ -1,0 +1,2524 @@
+
+
+================================================================================
+ARCHIVO: README.md
+================================================================================
+
+# LHG Mining Website
+
+Este proyecto es una recreación de la página web de LHG Mining utilizando React, TypeScript, Vite y Tailwind CSS.
+
+## Características
+
+- Diseño moderno y responsive basado en la web original de LHG Mining
+- Desarrollado con React y TypeScript para una mejor calidad de código
+- Utiliza Tailwind CSS para un diseño flexible y consistente
+- Optimizado para rendimiento con Vite
+- Componentes interactivos como galería de imágenes con lightbox
+- Navegación intuitiva y experiencia de usuario optimizada
+
+## Tecnologías utilizadas
+
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Icons
+
+## Estructura del proyecto
+
+```
+lhg_web/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── AboutSection.tsx
+│   │   ├── Footer.tsx
+│   │   ├── Gallery.tsx
+│   │   ├── Hero.tsx
+│   │   ├── Navbar.tsx
+│   │   ├── NewsSection.tsx
+│   │   ├── OperationsSection.tsx
+│   │   └── SustainabilitySection.tsx
+│   ├── App.css
+│   ├── App.tsx
+│   ├── index.css
+│   ├── main.tsx
+│   └── vite-env.d.ts
+├── index.html
+├── package.json
+├── postcss.config.js
+├── tailwind.config.js
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
+```
+
+## Instalación
+
+1. Clona este repositorio
+2. Navega al directorio del proyecto
+3. Instala las dependencias:
+
+```bash
+cd lhg_web
+npm install
+```
+
+## Desarrollo
+
+Para iniciar el servidor de desarrollo:
+
+```bash
+npm run dev
+```
+
+El sitio estará disponible en http://localhost:3000
+
+## Producción
+
+Para construir la versión de producción:
+
+```bash
+npm run build
+```
+
+Para previsualizar la versión de producción:
+
+```bash
+npm run preview
+```
+
+## Personalización
+
+- Los colores principales y la tipografía se pueden modificar en `tailwind.config.js`
+- Para cambiar las imágenes, actualiza las URLs en los componentes respectivos
+- Puedes agregar o modificar secciones editando el archivo `App.tsx` y los componentes correspondientes
+
+## Licencia
+
+Este proyecto es solo para fines educativos y de demostración.
+
+## Autor
+
+[Tu nombre aquí]
+
+
+
+================================================================================
+ARCHIVO: eslint.config.js
+================================================================================
+
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import tseslint from 'typescript-eslint'
+
+export default tseslint.config(
+  { ignores: ['dist'] },
+  {
+    extends: [js.configs.recommended, ...tseslint.configs.recommended],
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+    },
+    plugins: {
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+    },
+    rules: {
+      ...reactHooks.configs.recommended.rules,
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
+    },
+  },
+)
+
+
+
+================================================================================
+ARCHIVO: index.html
+================================================================================
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="LHG Mining - Trabajamos con tecnologías pioneras para producir un acero más sostenible. Líderes en extracción y procesamiento de mineral de hierro de alta ley." />
+    <title>LHG Mining | Extracción y procesamiento de mineral de hierro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
+
+
+================================================================================
+ARCHIVO: package.json
+================================================================================
+
+{
+  "name": "lhg_web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.3.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "postcss": "^8.5.3",
+    "react-icons": "^5.5.0",
+    "tailwindcss": "^3.4.17",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.24.1",
+    "vite": "^6.2.0"
+  }
+}
+
+
+
+================================================================================
+ARCHIVO: postcss.config.js
+================================================================================
+
+export default {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+} 
+
+
+================================================================================
+ARCHIVO: src/App.css
+================================================================================
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Custom container class */
+.container-custom {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Custom styles can be added here if needed */
+
+
+
+================================================================================
+ARCHIVO: src/App.tsx
+================================================================================
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import QuienesSomos from './pages/QuienesSomos'
+import Operaciones from './pages/Operaciones'
+import './App.css'
+
+function App() {
+  return (
+    <Router>
+      <div className="min-h-screen bg-white">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/quienes-somos" element={<QuienesSomos />} />
+          <Route path="/operaciones" element={<Operaciones />} />
+        </Routes>
+      </div>
+    </Router>
+  )
+}
+
+export default App
+
+
+
+================================================================================
+ARCHIVO: src/components/Footer.tsx
+================================================================================
+
+import React from 'react';
+import { FaLinkedin, FaFacebook, FaTwitter, FaInstagram, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+
+const Footer: React.FC = () => {
+  return (
+    <footer className="bg-primary text-white">
+      <div className="container-custom py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Company Info */}
+          <div>
+            <h3 className="text-xl font-bold mb-6">LHG Mining</h3>
+            <p className="mb-4 text-gray-300">
+              Trabajamos con tecnologías pioneras para producir un acero más sostenible.
+            </p>
+            <div className="flex space-x-4 mt-6">
+              <a href="#" className="text-white hover:text-secondary transition-colors">
+                <FaLinkedin size={20} />
+              </a>
+              <a href="#" className="text-white hover:text-secondary transition-colors">
+                <FaFacebook size={20} />
+              </a>
+              <a href="#" className="text-white hover:text-secondary transition-colors">
+                <FaTwitter size={20} />
+              </a>
+              <a href="#" className="text-white hover:text-secondary transition-colors">
+                <FaInstagram size={20} />
+              </a>
+            </div>
+          </div>
+          
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-xl font-bold mb-6">Enlaces Rápidos</h3>
+            <ul className="space-y-3">
+              <li>
+                <a href="#about" className="text-gray-300 hover:text-white transition-colors">Quienes Somos</a>
+              </li>
+              <li>
+                <a href="#operations" className="text-gray-300 hover:text-white transition-colors">Operaciones</a>
+              </li>
+              <li>
+                <a href="#sustainability" className="text-gray-300 hover:text-white transition-colors">Sostenibilidad</a>
+              </li>
+              <li>
+                <a href="#news" className="text-gray-300 hover:text-white transition-colors">Noticias</a>
+              </li>
+              <li>
+                <a href="#gallery" className="text-gray-300 hover:text-white transition-colors">Galeria</a>
+              </li>
+              <li>
+                <a href="#contact" className="text-gray-300 hover:text-white transition-colors">Contacte</a>
+              </li>
+            </ul>
+          </div>
+          
+          {/* Contact Info */}
+          <div>
+            <h3 className="text-xl font-bold mb-6">Contacto</h3>
+            <ul className="space-y-4">
+              <li className="flex items-start">
+                <FaMapMarkerAlt className="mr-3 mt-1 text-secondary" />
+                <span className="text-gray-300">
+                  Av. Rio Branco, 1, Centro <br />
+                  Rio de Janeiro, RJ <br />
+                  Brasil
+                </span>
+              </li>
+              <li className="flex items-center">
+                <FaPhone className="mr-3 text-secondary" />
+                <span className="text-gray-300">+55 (21) 3333-4444</span>
+              </li>
+              <li className="flex items-center">
+                <FaEnvelope className="mr-3 text-secondary" />
+                <a href="mailto:info@lhgmining.com" className="text-gray-300 hover:text-white transition-colors">
+                  info@lhgmining.com
+                </a>
+              </li>
+            </ul>
+          </div>
+          
+          {/* Newsletter */}
+          <div id="contact">
+            <h3 className="text-xl font-bold mb-6">Contáctenos</h3>
+            <form>
+              <div className="mb-4">
+                <input 
+                  type="text" 
+                  placeholder="Nombre" 
+                  className="w-full px-4 py-2 bg-dark text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary"
+                />
+              </div>
+              <div className="mb-4">
+                <input 
+                  type="email" 
+                  placeholder="Correo electrónico" 
+                  className="w-full px-4 py-2 bg-dark text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary"
+                />
+              </div>
+              <div className="mb-4">
+                <textarea 
+                  placeholder="Mensaje" 
+                  rows={3}
+                  className="w-full px-4 py-2 bg-dark text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary"
+                ></textarea>
+              </div>
+              <button type="submit" className="btn btn-secondary w-full">
+                Enviar
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      {/* Bottom Footer */}
+      <div className="bg-dark py-4">
+        <div className="container-custom">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="text-gray-400 text-sm mb-4 md:mb-0">
+              &copy; {new Date().getFullYear()} LHG Mining. Todos los derechos reservados.
+            </div>
+            <div className="flex space-x-4 text-sm text-gray-400">
+              <a href="#" className="hover:text-white transition-colors">Términos y Condiciones</a>
+              <span>|</span>
+              <a href="#" className="hover:text-white transition-colors">Política de Privacidad</a>
+              <span>|</span>
+              <a href="#" className="hover:text-white transition-colors">Portal de Privacidad</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer; 
+
+
+================================================================================
+ARCHIVO: src/components/Navbar.tsx
+================================================================================
+
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { FaBars, FaTimes } from 'react-icons/fa';
+
+const Navbar: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const navItems = [
+    { name: 'Quienes Somos', href: '#about', inPageLink: '#about' },
+    { name: 'Operaciones', href: '#operations', inPageLink: '#operations' },
+    { name: 'Sostenibilidad', href: '#sustainability', inPageLink: '#sustainability' },
+    { name: 'Noticias', href: '#news', inPageLink: '#news' },
+    { name: 'Contacte', href: '#contact', inPageLink: '#contact' },
+  ];
+
+  return (
+    <nav className="fixed top-0 left-0 right-0 bg-primary-dark/95 backdrop-blur-sm shadow-lg z-50">
+      <div className="px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-start py-3">
+          {/* Logo */}
+          <div className="flex-shrink-0 mr-16 pb-2 my-2">
+            <Link to="/" className="flex items-center">
+              <img src="/icons/lhgmining.svg" alt="LHG Mining" className="h-14 w-auto" />
+            </Link>
+          </div>
+          
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex space-x-12 items-start">
+            {navItems.map((item, index) => (
+              item.href.startsWith('#') ? (
+                <a 
+                  key={index} 
+                  href={item.href} 
+                  className="text-white/90 hover:text-secondary transition-colors"
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <Link 
+                  key={index} 
+                  to={item.href} 
+                  className="text-white/90 hover:text-secondary transition-colors"
+                >
+                  {item.name}
+                </Link>
+              )
+            ))}
+          </div>
+          
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button 
+              onClick={toggleMenu} 
+              className="p-2 rounded-md text-white/90 hover:text-secondary focus:outline-none"
+              aria-expanded={isMenuOpen}
+            >
+              {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      {/* Mobile Navigation */}
+      <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
+        <div className="bg-gray-900/80 backdrop-blur-md p-6 space-y-4">
+          {navItems.map((item, index) => (
+            item.href.startsWith('#') ? (
+              <a 
+                key={index} 
+                href={item.href} 
+                className="block text-white/90 hover:text-secondary transition-colors py-2"
+                onClick={toggleMenu}
+              >
+                {item.name}
+              </a>
+            ) : (
+              <Link 
+                key={index} 
+                to={item.href} 
+                className="block text-white/90 hover:text-secondary transition-colors py-2"
+                onClick={toggleMenu}
+              >
+                {item.name}
+              </Link>
+            )
+          ))}
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar; 
+
+
+================================================================================
+ARCHIVO: src/index.css
+================================================================================
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-sans text-dark bg-white m-0 min-h-screen w-full;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-primary;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded transition-all duration-300 font-medium;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-opacity-90;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary text-white hover:bg-opacity-90;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  width: 100%;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+
+
+================================================================================
+ARCHIVO: src/main.tsx
+================================================================================
+
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.tsx'
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+
+
+
+================================================================================
+ARCHIVO: src/pages/Home.tsx
+================================================================================
+
+import React from 'react';
+import Navbar from '../components/Navbar';
+import Hero from '../sections/Hero';
+import AboutSection from '../sections/AboutSection';
+import OperationsSection from '../sections/OperationsSection';
+import SustainabilitySection from '../sections/SustainabilitySection';
+import ContactSection from '../sections/ContactSection';
+import Footer from '../components/Footer';
+
+const Home: React.FC = () => {
+  return (
+    <>
+      <Navbar />
+      <main>
+        <Hero />
+        <AboutSection />
+        <OperationsSection />
+        <SustainabilitySection />
+        <ContactSection />
+      </main>
+      <Footer />
+    </>
+  );
+};
+
+export default Home; 
+
+
+================================================================================
+ARCHIVO: src/pages/Operaciones.tsx
+================================================================================
+
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { FaArrowLeft, FaMountain, FaShip, FaIndustry, FaCogs, FaLeaf, FaCheckCircle, FaCubes, FaWater, FaRoad, FaTree, FaMapMarkerAlt, FaWarehouse, FaExchangeAlt, FaGlobeAmericas } from 'react-icons/fa';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+
+const Operaciones: React.FC = () => {
+  // Datos de las minas
+  const mines = [
+    {
+      name: "Mina de Santa Cruz",
+      description: "Ubicada en Corumbá, este complejo minero explota yacimientos de mineral de hierro de alto tenor, a cielo abierto, y está en funcionamiento desde 1974. Su principal producto es el granulado (lump) de alto tenor, producto único en el mercado. Adicionalmente, produce un fino natural (sínter feed) con tenor superior a la media del mercado y granulometría que permite alta productividad para la producción de sinterizado.",
+      features: [
+        "Producción de granulado de alta calidad",
+        "Operación de baja emisión de carbono",
+        "Sistema de extracción optimizado",
+        "Laboratorio para control de calidad"
+      ],
+      image: "/galeria/mina-santa-cruz.jpg"
+    },
+    {
+      name: "Mina de Urucum",
+      description: "En operación desde 1903, cuenta con una extracción de mineral de hierro a cielo abierto y una extracción subterránea de manganeso, única en el país. Además de granulados y finos de mineral de hierro con calidad similar a los de la mina de Santa Cruz, Urucum produce también un granulado de manganeso con excelente calidad para la producción de ferroaleaciones.",
+      features: [
+        "Reservas de mineral de alta calidad",
+        "Extracción subterránea única de manganeso",
+        "Instalaciones de última generación",
+        "Procesos sostenibles de extracción",
+        "Recuperación ambiental progresiva"
+      ],
+      image: "/galeria/mina-urucum.jpg"
+    }
+  ];
+
+  // Datos del sistema logístico
+  const logisticSections = [
+    {
+      title: "Puertos fluviales",
+      description: "El mineral se transporta por carretera o ferrocarril a dos puertos fluviales en el río Paraguay: el puerto Gregório Curbo, propiedad de LHG Mining, y el puerto asociado Granel Química.",
+      icon: <FaShip className="text-4xl text-secondary" />
+    },
+    {
+      title: "Navegación fluvial",
+      description: "La producción baja por la hidrovía de los ríos Paraguay y Paraná en dirección al mar en barcazas de Transbarge Navegación (TBN), empresa de navegación fluvial propia con sede en Asunción, o en embarcaciones de terceros.",
+      icon: <FaWater className="text-4xl text-secondary" />
+    },
+    {
+      title: "Terminal marítima",
+      description: "Después de 2,5 mil quilómetros de hidrovía, las barcazas llegan a la terminal marítima de Nueva Palmira, en Uruguay. Allí se cargan navíos handy-maxes, panamaxes y baby-capes con cantidades de hasta 45 mil toneladas.",
+      icon: <FaWarehouse className="text-4xl text-secondary" />
+    },
+    {
+      title: "Mercado interno",
+      description: "Los clientes del mercado brasileño son atendidos por medio de las terminales de transporte terrestre de Tupacery y Antônio Maria Coelho, en el municipio de Corumbá, además de las terminales de transbordo ferroviario de Suzano e Itutinga.",
+      icon: <FaExchangeAlt className="text-4xl text-secondary" />
+    }
+  ];
+
+  // Datos de procesamiento y producción
+  const productionInfo = [
+    {
+      title: "Procesamiento en seco",
+      description: "El 80% de la producción de mineral de hierro se realiza a través de procesamiento en seco. La minería en seco utiliza cantidades menores de agua y, por lo tanto, no genera residuos y elimina la construcción de represas. Prácticamente todo el material manipulado se convierte en producto final.",
+      icon: <FaWater className="text-4xl text-secondary" />
+    },
+    {
+      title: "Sistema de filtrado",
+      description: "Desde julio de 2023, tras la instalación de un sistema de filtración, LHG Mining dejó de utilizar presas, incluso para el 20% de la producción procesada en húmedo. La meta es que el 100% de la producción pase a ser en seco, reduciendo aún más el impacto ambiental.",
+      icon: <FaCogs className="text-4xl text-secondary" />
+    },
+    {
+      title: "Granulado (lump)",
+      description: "El principal producto es el granulado de mineral de hierro de alta ley. Este 'natural pellet' permite reducir las emisiones de CO2 en un promedio de 70 kg por tonelada de acero, en comparación con el aglomerado sinterizado, y 60 kg comparado con la pelota de mineral de hierro.",
+      icon: <FaIndustry className="text-4xl text-secondary" />
+    },
+    {
+      title: "Natural pellet",
+      description: "LHG Mining desarrolla un nuevo producto, el 'natural pellet', para aplicación en la ruta de producción del acero que utiliza tecnologías de Reducción Directa y horno eléctrico, emitiendo casi 40% menos de CO2 por tonelada de acero en comparación con métodos tradicionales.",
+      icon: <FaTree className="text-4xl text-secondary" />
+    }
+  ];
+
+  // Puntos en el mapa
+  const mapLocations = [
+    {
+      name: "Mina Santa Cruz",
+      position: { top: "30%", left: "48%" },
+      type: "mine"
+    },
+    {
+      name: "Mina Urucum",
+      position: { top: "32%", left: "46%" },
+      type: "mine"
+    },
+    {
+      name: "Puerto Gregório Curvo",
+      position: { top: "34%", left: "47%" },
+      type: "port"
+    },
+    {
+      name: "Terminales Tupacery",
+      position: { top: "36%", left: "46%" },
+      type: "terminal"
+    },
+    {
+      name: "Hidrovía Paraguay-Paraná",
+      position: { top: "50%", left: "52%" },
+      type: "route"
+    },
+    {
+      name: "Terminal Nueva Palmira",
+      position: { top: "70%", left: "60%" },
+      type: "port"
+    }
+  ];
+
+  return (
+    <>
+      <Navbar />
+      <main className="pt-16">
+        {/* Hero section */}
+        <div className="relative h-[60vh] overflow-hidden">
+          <img 
+            src="/galeria/Operacao-de-embarque-PCG.jpg" 
+            alt="Operaciones LHG Mining" 
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/90 via-primary-dark/60 to-primary-dark/30"></div>
+          <div className="absolute inset-0 flex items-center">
+            <div className="container-custom">
+              <div className="max-w-3xl">
+                <Link to="/" className="inline-flex items-center text-white/80 hover:text-white mb-6">
+                  <FaArrowLeft className="mr-2" /> Volver al inicio
+                </Link>
+                <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">Nuestras Operaciones</h1>
+                <div className="w-32 h-1 bg-secondary mb-6"></div>
+                <p className="text-xl text-white/90 max-w-2xl">
+                  Desde la extracción hasta la entrega, cada etapa de nuestras operaciones se rige por los más altos estándares de calidad, eficiencia y sostenibilidad.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Visión general con mapa */}
+        <section className="py-20 bg-white">
+          <div className="container-custom">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-primary-dark mb-4">
+                Cadena Productiva Integrada
+              </h2>
+              <div className="w-24 h-1 bg-secondary mx-auto mb-6"></div>
+              <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+                LHG Mining llega al mercado con una estructura liviana y la capacidad de invertir en la expansión de sus vastas reservas de mineral de hierro de alta ley, con el objetivo de ser una solución confiable para la cadena de producción de acero sostenible.
+              </p>
+            </div>
+
+            <div className="flex flex-col lg:flex-row gap-10 mb-16">
+              {/* Mapa de operaciones */}
+              <div className="lg:w-1/2">
+                <div className="rounded-lg overflow-hidden shadow-xl bg-light p-4 h-full">
+                  <h3 className="text-2xl font-bold text-primary-dark mb-4">Presencia Operativa</h3>
+                  <div className="relative h-[500px] rounded-lg overflow-hidden border border-gray-200">
+                    <img 
+                      src="/galeria/mapa-operaciones.jpg" 
+                      alt="Mapa de operaciones LHG Mining" 
+                      className="w-full h-full object-cover"
+                    />
+                    {/* Puntos en el mapa */}
+                    {mapLocations.map((location, index) => (
+                      <div 
+                        key={index}
+                        className={`absolute flex flex-col items-center ${
+                          location.type === 'mine' ? 'text-red-500' : 
+                          location.type === 'port' ? 'text-blue-500' : 
+                          location.type === 'terminal' ? 'text-green-500' : 'text-yellow-500'
+                        }`}
+                        style={{ 
+                          top: location.position.top, 
+                          left: location.position.left 
+                        }}
+                      >
+                        <FaMapMarkerAlt className="text-2xl" />
+                        <span className="text-xs font-bold bg-white/90 px-1 rounded">{location.name}</span>
+                      </div>
+                    ))}
+                    
+                    {/* Leyenda del mapa */}
+                    <div className="absolute bottom-2 right-2 bg-white/90 p-2 rounded-lg text-xs">
+                      <div className="flex items-center mb-1">
+                        <span className="block w-3 h-3 rounded-full bg-red-500 mr-1"></span>
+                        <span>Minas</span>
+                      </div>
+                      <div className="flex items-center mb-1">
+                        <span className="block w-3 h-3 rounded-full bg-blue-500 mr-1"></span>
+                        <span>Puertos</span>
+                      </div>
+                      <div className="flex items-center mb-1">
+                        <span className="block w-3 h-3 rounded-full bg-green-500 mr-1"></span>
+                        <span>Terminales</span>
+                      </div>
+                      <div className="flex items-center">
+                        <span className="block w-3 h-3 rounded-full bg-yellow-500 mr-1"></span>
+                        <span>Rutas</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Información general */}
+              <div className="lg:w-1/2">
+                <div className="bg-light p-8 rounded-lg shadow-md mb-6">
+                  <FaGlobeAmericas className="text-5xl text-secondary mb-4" />
+                  <h3 className="text-2xl font-bold text-primary-dark mb-3">Nuestra Presencia</h3>
+                  <p className="text-gray-700 mb-4">
+                    En 2022, LHG Mining nació a través de la adquisición de MCR (Mineração Corumbaense Reunida) en Corumbá, Mato Grosso do Sul. Los minerales de hierro y manganeso vienen de dos minas de alto tenor en la región.
+                  </p>
+                  <p className="text-gray-700">
+                    El sistema integrado de logística de la empresa incluye una empresa de logística fluvial y un puerto propio, además de un puerto aliado en la región de Corumbá, una terminal marítima en Nueva Palmira, en Uruguay, y también terminales de transporte terrestre para el mercado interno.
+                  </p>
+                </div>
+                
+                <div className="bg-primary/5 p-6 rounded-lg border border-primary/10">
+                  <h3 className="text-xl font-bold text-primary-dark mb-3">Objetivo estratégico</h3>
+                  <p className="text-gray-700">
+                    Nuestro objetivo es convertirse en una solución única y confiable para la cadena de producción de acero más sostenible, permitiendo una reducción significativa de las emisiones de gases de efecto invernadero a través de nuestros productos de alta calidad y procesos innovadores.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Áreas principales de operación */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="bg-light p-8 rounded-lg shadow-md">
+                <FaMountain className="text-5xl text-secondary mb-4" />
+                <h3 className="text-2xl font-bold text-primary-dark mb-3">Extracción</h3>
+                <p className="text-gray-700">
+                  Explotación de minas con tecnología de punta, priorizando la eficiencia operativa y el cuidado del medio ambiente en nuestras operaciones de Santa Cruz y Urucum.
+                </p>
+              </div>
+              
+              <div className="bg-light p-8 rounded-lg shadow-md">
+                <FaCogs className="text-5xl text-secondary mb-4" />
+                <h3 className="text-2xl font-bold text-primary-dark mb-3">Procesamiento</h3>
+                <p className="text-gray-700">
+                  Beneficio y procesamiento del mineral con métodos innovadores que eliminan la necesidad de presas de relaves, utilizando principalmente procesamiento en seco.
+                </p>
+              </div>
+              
+              <div className="bg-light p-8 rounded-lg shadow-md">
+                <FaShip className="text-5xl text-secondary mb-4" />
+                <h3 className="text-2xl font-bold text-primary-dark mb-3">Logística</h3>
+                <p className="text-gray-700">
+                  Sistema logístico integrado con puerto propio en el río Paraguay y navegación fluvial hasta la terminal marítima en Uruguay, optimizando el transporte.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Minas */}
+        <section id="minas" className="py-20 bg-light">
+          <div className="container-custom">
+            <div className="mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-primary-dark mb-4">
+                Nuestras Minas
+              </h2>
+              <div className="w-24 h-1 bg-secondary mb-6"></div>
+              <p className="text-xl text-gray-700 max-w-3xl">
+                Operamos dos importantes complejos mineros en la región de Mato Grosso do Sul, de donde extraemos mineral de hierro y manganeso de alta calidad con operaciones optimizadas y sostenibles.
+              </p>
+            </div>
+
+            <div className="space-y-16">
+              {mines.map((mine, index) => (
+                <div key={index} className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 items-center`}>
+                  <div className="md:w-1/2">
+                    <div className="rounded-lg overflow-hidden shadow-xl">
+                      <img src={mine.image} alt={mine.name} className="w-full h-96 object-cover" />
+                    </div>
+                  </div>
+                  <div className="md:w-1/2">
+                    <h3 className="text-2xl font-bold text-primary-dark mb-4">{mine.name}</h3>
+                    <p className="text-gray-700 mb-6">{mine.description}</p>
+                    <div className="space-y-2">
+                      {mine.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-start">
+                          <FaCheckCircle className="text-secondary mt-1 mr-2 flex-shrink-0" />
+                          <span className="text-gray-700">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Sistema Logístico */}
+        <section id="logistica" className="py-20 bg-white">
+          <div className="container-custom">
+            <div className="mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-primary-dark mb-4">
+                Sistema Logístico Integrado
+              </h2>
+              <div className="w-24 h-1 bg-secondary mb-6"></div>
+              <p className="text-xl text-gray-700 max-w-3xl">
+                Nuestro sistema logístico integrado es uno de los grandes diferenciales de LHG Mining, permitiendo transportar el mineral desde la mina hasta el puerto de manera eficiente y competitiva.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {logisticSections.map((section, index) => (
+                <div key={index} className="bg-light p-8 rounded-lg shadow-md">
+                  <div className="mb-4">{section.icon}</div>
+                  <h3 className="text-2xl font-bold text-primary-dark mb-3">{section.title}</h3>
+                  <p className="text-gray-700">{section.description}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-16 bg-primary/5 p-8 rounded-lg border border-primary/10">
+              <h3 className="text-2xl font-bold text-primary-dark mb-4">Ventajas de nuestro sistema logístico</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="flex items-start">
+                  <FaCheckCircle className="text-secondary mt-1 mr-2 flex-shrink-0" />
+                  <span className="text-gray-700">Reducción de costos de transporte</span>
+                </div>
+                <div className="flex items-start">
+                  <FaCheckCircle className="text-secondary mt-1 mr-2 flex-shrink-0" />
+                  <span className="text-gray-700">Menor impacto ambiental</span>
+                </div>
+                <div className="flex items-start">
+                  <FaCheckCircle className="text-secondary mt-1 mr-2 flex-shrink-0" />
+                  <span className="text-gray-700">Mayor control de calidad del producto</span>
+                </div>
+                <div className="flex items-start">
+                  <FaCheckCircle className="text-secondary mt-1 mr-2 flex-shrink-0" />
+                  <span className="text-gray-700">Optimización de tiempos de entrega</span>
+                </div>
+                <div className="flex items-start">
+                  <FaCheckCircle className="text-secondary mt-1 mr-2 flex-shrink-0" />
+                  <span className="text-gray-700">Flexibilidad para responder a demandas del mercado</span>
+                </div>
+                <div className="flex items-start">
+                  <FaCheckCircle className="text-secondary mt-1 mr-2 flex-shrink-0" />
+                  <span className="text-gray-700">Mayor competitividad en el mercado global</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Procesamiento y Producción */}
+        <section id="produccion" className="py-20 bg-light">
+          <div className="container-custom">
+            <div className="mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-primary-dark mb-4">
+                Procesamiento y Producción Sostenible
+              </h2>
+              <div className="w-24 h-1 bg-secondary mb-6"></div>
+              <p className="text-xl text-gray-700 max-w-3xl">
+                Nuestros procesos de beneficio y producción combinan tecnología avanzada con prácticas sostenibles, lo que nos permite ofrecer productos de alta calidad con menor impacto ambiental.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+              {productionInfo.map((item, index) => (
+                <div key={index} className="bg-white p-8 rounded-lg shadow-md">
+                  <div className="mb-4">{item.icon}</div>
+                  <h3 className="text-2xl font-bold text-primary-dark mb-3">{item.title}</h3>
+                  <p className="text-gray-700">{item.description}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="bg-primary/5 p-8 rounded-lg border border-primary/10">
+              <h3 className="text-2xl font-bold text-primary-dark mb-4">Beneficios ambientales</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4">
+                <div className="flex items-start">
+                  <FaLeaf className="text-secondary mt-1 mr-2 flex-shrink-0" />
+                  <span className="text-gray-700">Eliminación de presas de relaves</span>
+                </div>
+                <div className="flex items-start">
+                  <FaLeaf className="text-secondary mt-1 mr-2 flex-shrink-0" />
+                  <span className="text-gray-700">Reducción de consumo de agua</span>
+                </div>
+                <div className="flex items-start">
+                  <FaLeaf className="text-secondary mt-1 mr-2 flex-shrink-0" />
+                  <span className="text-gray-700">Menor emisión de CO2 en la cadena productiva</span>
+                </div>
+                <div className="flex items-start">
+                  <FaLeaf className="text-secondary mt-1 mr-2 flex-shrink-0" />
+                  <span className="text-gray-700">Recuperación progresiva de áreas minadas</span>
+                </div>
+                <div className="flex items-start">
+                  <FaLeaf className="text-secondary mt-1 mr-2 flex-shrink-0" />
+                  <span className="text-gray-700">Menor impacto en ecosistemas locales</span>
+                </div>
+                <div className="flex items-start">
+                  <FaLeaf className="text-secondary mt-1 mr-2 flex-shrink-0" />
+                  <span className="text-gray-700">Contribución a la reducción de emisiones en la industria siderúrgica</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+};
+
+export default Operaciones; 
+
+
+================================================================================
+ARCHIVO: src/pages/QuienesSomos.tsx
+================================================================================
+
+import React from 'react';
+import { FaLeaf, FaIndustry, FaGlobeAmericas, FaCheck, FaHistory, FaUsers, FaShip, FaMapMarkedAlt } from 'react-icons/fa';
+import Navbar from '../components/Navbar';
+
+const QuienesSomos: React.FC = () => {
+  const timeline = [
+    {
+      year: "2022",
+      title: "Nacimiento de LHG Mining",
+      description: "Adquisición de MCR (Mineração Corumbaense Reunida) por el Grupo J&F y cambio de nombre a LHG Mining."
+    },
+    {
+      year: "2023",
+      title: "Expansión de operaciones",
+      description: "Ampliación de la capacidad productiva y mejoras en la infraestructura logística."
+    },
+    {
+      year: "2024",
+      title: "Innovación sostenible",
+      description: "Implementación de nuevas tecnologías para reducir el impacto ambiental y aumentar la eficiencia."
+    }
+  ];
+
+  const values = [
+    {
+      icon: <FaUsers size={36} className="text-secondary" />,
+      title: "Nuestra gente",
+      description: "Valoramos a las personas y creemos en el potencial humano, ofreciendo oportunidades para el crecimiento y desarrollo profesional de nuestros colaboradores."
+    },
+    {
+      icon: <FaLeaf size={36} className="text-secondary" />,
+      title: "Sostenibilidad",
+      description: "Promovemos prácticas sostenibles en todas nuestras operaciones, buscando minimizar nuestro impacto ambiental y preservar los recursos naturales para las futuras generaciones."
+    },
+    {
+      icon: <FaIndustry size={36} className="text-secondary" />,
+      title: "Excelencia operacional",
+      description: "Buscamos continuamente la excelencia en todos nuestros procesos, con un enfoque en la calidad, eficiencia y mejora continua."
+    },
+    {
+      icon: <FaGlobeAmericas size={36} className="text-secondary" />,
+      title: "Compromiso social",
+      description: "Nos comprometemos con el desarrollo de las comunidades donde operamos, creando valor compartido y contribuyendo a su bienestar y progreso."
+    }
+  ];
+
+  return (
+    <>
+      <Navbar />
+      <div className="pt-20 bg-light">
+        {/* Hero Section */}
+        <div className="bg-primary-dark text-white py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6">Quienes Somos</h1>
+              <p className="text-xl md:text-2xl leading-relaxed">
+                Somos una empresa minera comprometida con la sostenibilidad y la excelencia operativa,
+                dedicada a la extracción y procesamiento de mineral de hierro y manganeso de alta calidad.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Sobre nosotros */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-primary-dark mb-8">Nuestra historia</h2>
+              <p className="text-lg text-gray-700 mb-6">
+                LHG Mining fue fundada en 2022, con la adquisición de MCR (Mineração Corumbaense Reunida) por el Grupo J&F, 
+                el mayor grupo empresarial de Brasil. Con puerto propio, logística integrada y operaciones optimizadas de 
+                mineral de hierro y mineral de manganeso, LHG Mining representa un nuevo estándar en la industria minera.
+              </p>
+              <p className="text-lg text-gray-700 mb-6">
+                Ubicada en Corumbá, Mato Grosso do Sul, Brasil, nuestras operaciones incluyen las minas Santa Cruz y Urucum, 
+                que contienen vastas reservas de mineral de hierro de alto tenor y manganeso. Mediante nuestro puerto privado 
+                (Puerto Gregório Curvo), podemos transportar nuestros productos eficientemente a mercados globales.
+              </p>
+              <p className="text-lg text-gray-700 mb-12">
+                Como parte del Grupo J&F, compartimos un compromiso con la excelencia, la integridad y la responsabilidad 
+                social y ambiental en todas nuestras operaciones.
+              </p>
+
+              {/* Línea de tiempo */}
+              <div className="relative border-l-4 border-primary pl-8 py-4 mb-16">
+                {timeline.map((item, index) => (
+                  <div key={index} className="mb-12 relative">
+                    <div className="absolute -left-12 bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center">
+                      {index + 1}
+                    </div>
+                    <div className="bg-white p-6 rounded-lg shadow-md">
+                      <span className="text-secondary font-bold">{item.year}</span>
+                      <h3 className="text-xl font-bold text-primary-dark mt-1 mb-3">{item.title}</h3>
+                      <p className="text-gray-700">{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Nuestra misión y visión */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <div className="grid md:grid-cols-2 gap-12">
+                <div className="bg-light p-8 rounded-lg shadow-md">
+                  <h3 className="text-2xl font-bold text-primary-dark mb-4">Nuestra Misión</h3>
+                  <p className="text-gray-700 mb-6">
+                    Ser los mejores en lo que nos propusimos hacer, asegurando los mejores productos y servicios 
+                    a los clientes, solidez a los proveedores, rentabilidad a los accionistas y la oportunidad 
+                    de un futuro mejor para todos los colaboradores.
+                  </p>
+                  <ul className="space-y-2">
+                    {["Calidad superior", "Sostenibilidad", "Innovación", "Desarrollo social"].map((item, idx) => (
+                      <li key={idx} className="flex items-start">
+                        <FaCheck className="text-secondary mt-1 mr-2 flex-shrink-0" />
+                        <span className="text-gray-700">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="bg-light p-8 rounded-lg shadow-md">
+                  <h3 className="text-2xl font-bold text-primary-dark mb-4">Nuestra Visión</h3>
+                  <p className="text-gray-700 mb-6">
+                    Ser reconocidos como una empresa minera líder, destacada por la excelencia operativa, 
+                    compromiso con la sostenibilidad y generación de valor para todos nuestros grupos de interés.
+                  </p>
+                  <ul className="space-y-2">
+                    {["Liderazgo en el sector", "Excelencia operativa", "Sostenibilidad ambiental", "Impacto social positivo"].map((item, idx) => (
+                      <li key={idx} className="flex items-start">
+                        <FaCheck className="text-secondary mt-1 mr-2 flex-shrink-0" />
+                        <span className="text-gray-700">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Nuestros valores */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <h2 className="text-3xl font-bold text-primary-dark mb-4 text-center">Nuestros Valores</h2>
+              <p className="text-lg text-gray-700 mb-12 text-center max-w-3xl mx-auto">
+                Los valores que guían nuestras decisiones y acciones en el día a día, formando la base 
+                de nuestra cultura organizacional.
+              </p>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {values.map((value, index) => (
+                  <div key={index} className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center">
+                    <div className="mb-4 flex justify-center">{value.icon}</div>
+                    <h3 className="text-xl font-bold mb-3 text-primary-dark">{value.title}</h3>
+                    <p className="text-gray-700">{value.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Nuestras operaciones - Resumen */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-primary-dark mb-8">Dónde operamos</h2>
+              <div className="grid md:grid-cols-3 gap-8 mb-12">
+                <div className="bg-light p-6 rounded-lg shadow-md text-center">
+                  <FaMapMarkedAlt size={36} className="text-secondary mx-auto mb-4" />
+                  <h3 className="text-xl font-bold text-primary-dark mb-2">Minas</h3>
+                  <p className="text-gray-700">Minas Santa Cruz y Urucum, en Corumbá, Mato Grosso do Sul, Brasil.</p>
+                </div>
+                <div className="bg-light p-6 rounded-lg shadow-md text-center">
+                  <FaIndustry size={36} className="text-secondary mx-auto mb-4" />
+                  <h3 className="text-xl font-bold text-primary-dark mb-2">Plantas</h3>
+                  <p className="text-gray-700">Instalaciones de procesamiento en Corumbá con tecnología de vanguardia.</p>
+                </div>
+                <div className="bg-light p-6 rounded-lg shadow-md text-center">
+                  <FaShip size={36} className="text-secondary mx-auto mb-4" />
+                  <h3 className="text-xl font-bold text-primary-dark mb-2">Puerto</h3>
+                  <p className="text-gray-700">Puerto Gregório Curvo para el transporte eficiente de nuestros productos.</p>
+                </div>
+              </div>
+              <div className="text-center">
+                <a href="/operaciones" className="inline-flex items-center text-white bg-primary hover:bg-primary-dark px-6 py-3 rounded-lg font-medium transition-colors duration-300">
+                  Conocer más sobre nuestras operaciones
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Mensaje del CEO */}
+        <section className="py-16 bg-light">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-white p-8 md:p-10 rounded-lg shadow-lg relative border-l-4 border-secondary">
+                <div className="relative">
+                  <h3 className="text-2xl font-bold mb-6 text-primary-dark">Un mensaje de nuestra dirección</h3>
+                  <p className="text-gray-700 mb-6 leading-relaxed italic">
+                    "Estamos orgullosos de anunciar que J&F Mining ahora se llama LHG Mining. Un cambio que refleja 
+                    la gran transformación que ha experimentado la compañía en los últimos años. Estamos expandiendo 
+                    rápidamente nuestro equipo y nuestra producción. Se están realizando muchas inversiones en operación, 
+                    logística y gestión."
+                  </p>
+                  <p className="text-gray-700 mb-8 leading-relaxed italic">
+                    "Al igual que todas las empresas del grupo J&F, el negocio minero ahora tiene su propio nombre. 
+                    Nuestra nueva marca enfatiza nuestra excelencia, destacando la calidad y los beneficios de nuestro 
+                    producto estrella: el granulado de mineral de hierro de alta ley o bultos de alto grado."
+                  </p>
+                  <div className="flex items-center justify-end">
+                    <div className="text-right">
+                      <p className="font-bold text-primary-dark text-lg">AGUINALDO FILHO</p>
+                      <p className="text-sm text-gray-600">Presidente de J&F Investimentos y LHG Mining</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </>
+  );
+};
+
+export default QuienesSomos; 
+
+
+================================================================================
+ARCHIVO: src/sections/AboutSection.tsx
+================================================================================
+
+import React, { useState, useEffect, useRef } from 'react';
+import { FaArrowRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+
+const AboutSection: React.FC = () => {
+  // Valores para la rotación en la card
+  const companyValues = [
+    {
+      title: "Actitud de dueño",
+      description: "Comprometido con el resultado, conoce con profundidad lo que hace y tiene una visión del todo. Actúa con obstinación, disciplina y enfoque en los detalles."
+    },
+    {
+      title: "Humildad",
+      description: "Sabe escuchar, es atento, considera la opinión de los demás, no le importa quién hizo algo, sino lo que todos hicimos. No tiene vergüenza de preguntar ni de decir que no sabe."
+    },
+    {
+      title: "Franqueza",
+      description: "Es directo, sincero, verdadero y transparente en sus relaciones, siempre con respeto, de forma positiva, agregadora y acogedora."
+    },
+    {
+      title: "Disponibilidad",
+      description: "Es receptivo, accesible, disponible, cualquier momento es bueno, siempre está preparado y considera el trabajo una prioridad."
+    },
+    {
+      title: "Disciplina",
+      description: "Cumple lo combinado, es puntual con el horario y sus compromisos. Realiza sus tareas de forma disciplinada. Es enfocado, pragmático, optimiza el tiempo."
+    },
+    {
+      title: "Determinación",
+      description: "Es obstinado, entrega resultados superiores y cumple sus compromisos. Hace que las cosas sucedan, busca alternativas para los problemas y compromete a las personas en la búsqueda de un objetivo común."
+    },
+    {
+      title: "Simplicidad",
+      description: "Hace que las cosas sucedan de manera simple y práctica, pone manos a la obra, va derecho al punto, descomplica y desburocratiza, respetando las normas."
+    }
+  ];
+
+  // Nuestras creencias
+  const beliefs = [
+    {
+      icon: "foco.png",
+      title: "Enfoque en el detalle"
+    },
+    {
+      icon: "mao-na-massa.png",
+      title: "Manos a la obra"
+    },
+    {
+      icon: "conquistas.png",
+      title: "Las cosas solamente se conquistan con mucho trabajo"
+    },
+    {
+      icon: "pessoa.png",
+      title: "La persona correcta en el lugar correcto"
+    },
+    {
+      icon: "paixao.png",
+      title: "Pasión por lo que hace"
+    },
+    {
+      icon: "atitude.png",
+      title: "La actitud es más importante que el conocimiento"
+    },
+    {
+      icon: "lider.png",
+      title: "El líder es quien tiene que conquistar a sus liderados"
+    },
+    {
+      icon: "liderar.png",
+      title: "Liderar con el ejemplo"
+    },
+    {
+      icon: "resultado.png",
+      title: "Enfoque en el resultado"
+    },
+    {
+      icon: "acreditar.png",
+      title: "Creer es un factor de diferencia"
+    },
+    {
+      icon: "productos.png",
+      title: "Productos y servicios de calidad"
+    }
+  ];
+
+  // Componente para la card rotativa
+  const ValuesRotator = () => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [isVisible, setIsVisible] = useState(true);
+    const [isPaused, setIsPaused] = useState(false);
+    const intervalRef = useRef<number | null>(null);
+    
+    const startRotation = () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      
+      intervalRef.current = window.setInterval(() => {
+        if (!isPaused) {
+          setIsVisible(false);
+          
+          setTimeout(() => {
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % companyValues.length);
+            setIsVisible(true);
+          }, 500); // Tiempo para el fade out
+        }
+      }, 5000); // Cambiar cada 5 segundos
+    };
+    
+    useEffect(() => {
+      startRotation();
+      
+      return () => {
+        if (intervalRef.current) clearInterval(intervalRef.current);
+      };
+    }, [isPaused]);
+    
+    return (
+      <div 
+        className="absolute bottom-0 left-0 right-0 p-8 z-20"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        <div 
+          className={`bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+        >
+          <h4 className="text-xl font-bold text-primary-dark mb-2">{companyValues[currentIndex].title}</h4>
+          <p className="text-gray-700">
+            {companyValues[currentIndex].description}
+          </p>
+        </div>
+      </div>
+    );
+  };
+
+  // Componente de carrusel automático para creencias
+  const BeliefsCarousel = () => {
+    // Duplicamos los elementos para crear un efecto de loop infinito
+    const duplicatedBeliefs = [...beliefs, ...beliefs];
+    
+    // Función para animar el carrusel con CSS
+    useEffect(() => {
+      // Esta implementación de JavaScript simula el movimiento del carrusel con requestAnimationFrame
+      const carousel = document.querySelector('#beliefs-carousel');
+      if (!carousel) return;
+      
+      let position = 0;
+      const speed = 0.5; // Velocidad del carrusel (píxeles por frame)
+      const totalWidth = carousel.scrollWidth / 2; // Mitad del ancho total (por la duplicación)
+      
+      const animate = () => {
+        position -= speed;
+        // Reiniciar la posición cuando lleguemos a la mitad (para crear efecto infinito)
+        if (position <= -totalWidth) {
+          position = 0;
+        }
+        
+        // Aplicar transformación
+        (carousel as HTMLElement).style.transform = `translateX(${position}px)`;
+        requestAnimationFrame(animate);
+      };
+      
+      const animationId = requestAnimationFrame(animate);
+      
+      return () => {
+        cancelAnimationFrame(animationId);
+      };
+    }, []);
+    
+    return (
+      <div className="w-full overflow-hidden relative">
+        <div id="beliefs-carousel" className="flex">
+          {duplicatedBeliefs.map((belief, index) => (
+            <div 
+              key={index} 
+              className="flex flex-col items-center bg-white/20 backdrop-blur-sm p-4 rounded-lg min-w-[180px] max-w-[200px] mx-2 flex-shrink-0"
+            >
+              <div className="w-16 h-16 mb-3 flex items-center justify-center">
+                <img 
+                  src={`/icons/creencias/${belief.icon}`} 
+                  alt={belief.title} 
+                  className="w-12 h-12 object-contain"
+                />
+              </div>
+              <p className="text-center text-primary-dark font-medium">{belief.title}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <section id="about" className="py-28 bg-light">
+      <div className="container-custom">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-primary-dark mt-2 mb-4">Quienes Somos</h2>
+          <div className="w-24 h-1 bg-secondary mx-auto"></div>
+        </div>
+        
+        <div className="flex flex-col space-y-16">
+          {/* Main content - 3/4 of the vertical space */}
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h3 className="text-2xl font-bold mb-6 text-primary-dark">Liderando el camino hacia una minería más sostenible</h3>
+              <p className="text-lg mb-6 text-gray-700 leading-relaxed">
+                LHG Mining fue fundada en 2022, con la adquisición de MCR (Mineração Corumbaense Reunida) por el Grupo J&F, el mayor grupo empresarial de Brasil. Con puerto propio, logística integrada y operaciones optimizadas de mineral de hierro y mineral de manganeso.
+              </p>
+              <p className="text-lg mb-8 text-gray-700 leading-relaxed">
+                Nuestra misión es ser los mejores en lo que nos propusimos hacer, asegurando los mejores productos y servicios a los clientes, solidez a los proveedores, rentabilidad a los accionistas y la oportunidad de un futuro mejor para todos los colaboradores.
+              </p>
+              
+              {/* Botón más grande */}
+              <Link to="/quienes-somos" className="inline-flex items-center text-white bg-primary hover:bg-primary-dark px-8 py-4 text-lg rounded-lg font-medium transition-colors duration-300 shadow-md hover:shadow-lg">
+                Conocer más sobre nosotros
+                <FaArrowRight className="ml-3 text-xl" />
+              </Link>
+            </div>
+            
+            <div className="relative h-[500px] rounded-xl overflow-hidden shadow-xl">
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent z-10"></div>
+              <ValuesRotator />
+              <img 
+                src="galeria/Quem-somos5-1.jpg" 
+                alt="Minería sostenible" 
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
+          </div>
+          
+          {/* Nuestras creencias - 1/4 of the vertical space */}
+          <div className="w-full">
+            <h3 className="text-2xl font-bold mb-6 text-primary-dark">Nuestras creencias</h3>
+            <BeliefsCarousel />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default AboutSection; 
+
+
+================================================================================
+ARCHIVO: src/sections/ContactSection.tsx
+================================================================================
+
+import React from 'react';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
+
+const ContactSection: React.FC = () => {
+  return (
+    <section id="contact" className="py-24 bg-light">
+      <div className="container-custom">
+        <div className="text-center mb-16">
+          <span className="text-secondary uppercase tracking-wider font-medium">Comuníquese con Nosotros</span>
+          <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Contacte</h2>
+          <div className="w-24 h-1 bg-secondary mx-auto"></div>
+        </div>
+        
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          {/* Formulario de contacto */}
+          <div className="bg-white p-8 rounded-xl shadow-lg">
+            <h3 className="text-2xl font-bold mb-6 text-primary">Envíenos un mensaje</h3>
+            <form>
+              <div className="mb-4">
+                <label htmlFor="name" className="block text-gray-700 font-medium mb-2">Nombre</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  placeholder="Su nombre" 
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="email" className="block text-gray-700 font-medium mb-2">Correo electrónico</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  placeholder="ejemplo@correo.com" 
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="subject" className="block text-gray-700 font-medium mb-2">Asunto</label>
+                <input 
+                  type="text" 
+                  id="subject" 
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  placeholder="Asunto de su mensaje" 
+                />
+              </div>
+              <div className="mb-6">
+                <label htmlFor="message" className="block text-gray-700 font-medium mb-2">Mensaje</label>
+                <textarea 
+                  id="message" 
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent h-32"
+                  placeholder="Escriba su mensaje aquí..." 
+                ></textarea>
+              </div>
+              <button 
+                type="submit" 
+                className="w-full py-3 bg-primary text-white font-medium rounded-md hover:bg-primary/90 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+              >
+                Enviar mensaje
+              </button>
+            </form>
+          </div>
+          
+          {/* Información de contacto */}
+          <div>
+            <h3 className="text-2xl font-bold mb-6 text-primary">Información de contacto</h3>
+            <p className="text-gray-700 mb-8 leading-relaxed">
+              Para cualquier consulta o información adicional sobre nuestros servicios, productos o oportunidades laborales, no dude en contactarnos. Nuestro equipo está disponible para atenderle.
+            </p>
+            
+            <div className="space-y-4 mb-8">
+              <div className="flex items-start">
+                <div className="bg-secondary/10 p-3 rounded-full mr-4">
+                  <FaMapMarkerAlt className="text-secondary" size={20} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-gray-800">Oficina Principal</h4>
+                  <p className="text-gray-700">Av. das Nações Unidas, 14401 - Chácara Santo Antônio<br />São Paulo, SP 04794-000, Brasil</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start">
+                <div className="bg-secondary/10 p-3 rounded-full mr-4">
+                  <FaEnvelope className="text-secondary" size={20} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-gray-800">Correo electrónico</h4>
+                  <p className="text-gray-700">contacto@lhgmining.com</p>
+                  <p className="text-gray-700">negocios@lhgmining.com</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start">
+                <div className="bg-secondary/10 p-3 rounded-full mr-4">
+                  <FaPhone className="text-secondary" size={20} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-gray-800">Teléfono</h4>
+                  <p className="text-gray-700">+55 11 3035-3500</p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Redes sociales */}
+            <div>
+              <h4 className="font-bold text-gray-800 mb-3">Síganos en:</h4>
+              <div className="flex space-x-4">
+                <a 
+                  href="#" 
+                  className="bg-primary text-white p-3 rounded-full hover:bg-secondary transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <FaLinkedin size={20} />
+                </a>
+                <a 
+                  href="#" 
+                  className="bg-primary text-white p-3 rounded-full hover:bg-secondary transition-colors"
+                  aria-label="Twitter"
+                >
+                  <FaTwitter size={20} />
+                </a>
+                <a 
+                  href="#" 
+                  className="bg-primary text-white p-3 rounded-full hover:bg-secondary transition-colors"
+                  aria-label="Instagram"
+                >
+                  <FaInstagram size={20} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Mapa */}
+        <div className="mt-16 rounded-xl overflow-hidden shadow-lg h-96 relative">
+          {/* Aquí normalmente iría un mapa interactivo con Google Maps o similar */}
+          {/* Por ahora usamos una imagen de placeholder */}
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?ixlib=rb-4.0.3')] bg-cover bg-center">
+            <div className="absolute inset-0 bg-primary/20"></div>
+          </div>
+          <div className="absolute top-8 left-8 bg-white p-4 rounded-lg shadow-md">
+            <h4 className="font-bold text-primary">LHG Mining</h4>
+            <p className="text-sm text-gray-700">Oficina central, São Paulo</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ContactSection; 
+
+
+================================================================================
+ARCHIVO: src/sections/Gallery.tsx
+================================================================================
+
+import React, { useState } from 'react';
+
+const Gallery: React.FC = () => {
+  const galleryImages = [
+    {
+      id: 1,
+      url: 'https://images.unsplash.com/photo-1582580845891-3c161ed555a3?ixlib=rb-4.0.3',
+      caption: 'Vista frontal Porto Gregório Curvo'
+    },
+    {
+      id: 2,
+      url: 'https://images.unsplash.com/photo-1579547945413-497e1b99dac0?ixlib=rb-4.0.3',
+      caption: 'Mineral de manganeso – mina Urucum'
+    },
+    {
+      id: 3,
+      url: 'https://images.unsplash.com/photo-1581092579146-8189a1d462b6?ixlib=rb-4.0.3',
+      caption: 'Lavra subterrânea manganês – Mina Urucum'
+    },
+    {
+      id: 4,
+      url: 'https://images.unsplash.com/photo-1578059457703-850565b053f6?ixlib=rb-4.0.3',
+      caption: 'Instalación de beneficio – mina Santa'
+    },
+    {
+      id: 5,
+      url: 'https://images.unsplash.com/photo-1581092160607-ee22b4bd3169?ixlib=rb-4.0.3',
+      caption: 'Operaciones de envío Porto Gregório'
+    },
+    {
+      id: 6,
+      url: 'https://images.unsplash.com/photo-1542058704-e6a954fae1f2?ixlib=rb-4.0.3',
+      caption: 'Extraccion de mineral de hierro'
+    },
+  ];
+
+  const [selectedImage, setSelectedImage] = useState<number | null>(null);
+
+  const openLightbox = (id: number) => {
+    setSelectedImage(id);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeLightbox = () => {
+    setSelectedImage(null);
+    document.body.style.overflow = 'auto';
+  };
+
+  const navigateImage = (direction: 'prev' | 'next') => {
+    if (selectedImage === null) return;
+    
+    const currentIndex = galleryImages.findIndex(img => img.id === selectedImage);
+    let newIndex;
+    
+    if (direction === 'prev') {
+      newIndex = currentIndex > 0 ? currentIndex - 1 : galleryImages.length - 1;
+    } else {
+      newIndex = currentIndex < galleryImages.length - 1 ? currentIndex + 1 : 0;
+    }
+    
+    setSelectedImage(galleryImages[newIndex].id);
+  };
+
+  return (
+    <section id="gallery" className="py-16 bg-light">
+      <div className="container-custom">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Galeria</h2>
+          <div className="w-24 h-1 bg-secondary mx-auto"></div>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {galleryImages.map((image) => (
+            <div 
+              key={image.id} 
+              className="relative h-64 rounded-lg overflow-hidden cursor-pointer shadow-md hover:shadow-lg transform transition-all duration-300 hover:scale-[1.02]"
+              onClick={() => openLightbox(image.id)}
+            >
+              <div 
+                className="absolute inset-0 bg-cover bg-center" 
+                style={{ backgroundImage: `url(${image.url})` }}
+              >
+                <div className="absolute inset-0 bg-black opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+                <p className="text-white font-medium">{image.caption}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      {/* Lightbox */}
+      {selectedImage !== null && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex justify-center items-center p-4">
+          <button 
+            className="absolute top-4 right-4 text-white text-3xl" 
+            onClick={closeLightbox}
+          >
+            &times;
+          </button>
+          
+          <button 
+            className="absolute left-4 text-white text-4xl opacity-70 hover:opacity-100"
+            onClick={() => navigateImage('prev')}
+          >
+            &#8249;
+          </button>
+          
+          <button 
+            className="absolute right-4 text-white text-4xl opacity-70 hover:opacity-100"
+            onClick={() => navigateImage('next')}
+          >
+            &#8250;
+          </button>
+          
+          <div className="relative max-w-4xl max-h-[80vh]">
+            <img 
+              src={galleryImages.find(img => img.id === selectedImage)?.url} 
+              alt={galleryImages.find(img => img.id === selectedImage)?.caption}
+              className="max-h-[80vh] max-w-full object-contain"
+            />
+            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
+              <p className="text-white text-center font-medium">
+                {galleryImages.find(img => img.id === selectedImage)?.caption}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+};
+
+export default Gallery; 
+
+
+================================================================================
+ARCHIVO: src/sections/Hero.tsx
+================================================================================
+
+import React, { useEffect, useState } from 'react';
+import { HiUserGroup } from 'react-icons/hi';
+import { HiCog } from 'react-icons/hi2';
+import { PiLeafFill } from 'react-icons/pi';
+
+const Hero: React.FC = () => {
+  const [offset, setOffset] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setOffset(window.pageYOffset);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  return (
+    <section className="relative w-full h-screen overflow-hidden"> 
+      {/* Background image with parallax effect */}
+      <div className="absolute inset-0">
+        <div 
+          className="absolute inset-0 w-full h-[110%] -top-10" 
+          style={{ 
+            transform: `translateY(${offset * 0.3}px)`, 
+            transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+          }}
+        >
+          <img 
+            src="https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?ixlib=rb-4.0.3" 
+            alt="Mining operations" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/80 via-primary-dark/60 to-transparent"></div>
+      </div>
+      
+      {/* Content */}
+      <div className="relative h-full z-10 flex items-center">
+        <div className="w-full max-w-[90%] mx-auto">
+          <div className="max-w-4xl">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight">
+              «Trabajamos con tecnologías pioneras para producir un acero más sostenible«
+            </h1>
+          </div>
+        </div>
+      </div>
+      
+      {/* Navigation icons at bottom */}
+      <div className="absolute bottom-20 left-0 right-0 z-20">
+        <div className="w-full max-w-[90%] mx-auto">
+          <div className="grid grid-cols-3 gap-8 max-w-4xl">
+            <a href="#about" className="flex flex-col items-center text-white group">
+              <div className="w-16 h-16 mb-2 bg-white/5 rounded-full flex items-center justify-center backdrop-blur-sm transition-all duration-300 group-hover:bg-secondary/20">
+                <HiUserGroup className="w-8 h-8 text-white transition-colors duration-300 group-hover:text-secondary" />
+              </div>
+              <span className="text-lg font-medium transition-colors duration-300 group-hover:text-secondary">Quienes Somos</span>
+            </a>
+            <a href="#operations" className="flex flex-col items-center text-white group">
+              <div className="w-16 h-16 mb-2 bg-white/5 rounded-full flex items-center justify-center backdrop-blur-sm transition-all duration-300 group-hover:bg-secondary/20">
+                <HiCog className="w-8 h-8 text-white transition-colors duration-300 group-hover:text-secondary" />
+              </div>
+              <span className="text-lg font-medium transition-colors duration-300 group-hover:text-secondary">Operaciones</span>
+            </a>
+            <a href="#sustainability" className="flex flex-col items-center text-white group">
+              <div className="w-16 h-16 mb-2 bg-white/5 rounded-full flex items-center justify-center backdrop-blur-sm transition-all duration-300 group-hover:bg-secondary/20">
+                <PiLeafFill className="w-8 h-8 text-white transition-colors duration-300 group-hover:text-secondary" />
+              </div>
+              <span className="text-lg font-medium transition-colors duration-300 group-hover:text-secondary">Sostenibilidad</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero; 
+
+
+================================================================================
+ARCHIVO: src/sections/NewsSection.tsx
+================================================================================
+
+import React from 'react';
+
+const NewsSection: React.FC = () => {
+  const news = [
+    {
+      title: 'LHG Mining lanza primer Reporte de Sustentabilidad',
+      date: '15 Feb 2024',
+      excerpt: 'LHG Mining lanzó el primer Reporte de Sostenibilidad de la compañía con las principales iniciativas, estrategias y acciones en materia de medio ambiente, sustentabilidad, producción e inversión de la minera durante 2023.',
+      image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3'
+    },
+    {
+      title: 'LHG Mining patrocina R$ 500.000 para el Instituto Moinho Cultural Sul-Americano',
+      date: '28 Ene 2024',
+      excerpt: 'LHG Mining anunció la donación de R$ 500.000 al Instituto Moinho Cultural Sul Americano, que atiende anualmente a cerca de 400 niños y adolescentes en situación de vulnerabilidad en la región de Corumbá, Ladário y Bolivia.',
+      image: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?ixlib=rb-4.0.3'
+    },
+    {
+      title: 'LHG Mining participa en el I Congreso de Derecho Ambiental de OAB MG',
+      date: '10 Dic 2023',
+      excerpt: 'A principios de mes, el Primer Congreso de Derecho Ambiental fue promovido por la OAB Minas Gerais en asociación con la Federación de Industrias del Estado de Minas Gerais (FIEMG).',
+      image: 'https://images.unsplash.com/photo-1606836576983-8b458e75221d?ixlib=rb-4.0.3'
+    },
+    {
+      title: 'LHG amplía contrataciones en Corumbá y recibe a 600 nuevos empleados',
+      date: '5 Nov 2023',
+      excerpt: 'Hasta el final de 2023, más de 300 personas se incorporarán a las operaciones locales. La empresa ofrece muchas oportunidades en diferentes áreas.',
+      image: 'https://images.unsplash.com/photo-1533222481259-ce20eda1e20b?ixlib=rb-4.0.3'
+    }
+  ];
+
+  return (
+    <section id="news" className="py-16">
+      <div className="container-custom">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Noticias</h2>
+          <div className="w-24 h-1 bg-secondary mx-auto"></div>
+        </div>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {news.map((item, index) => (
+            <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
+              <div className="relative h-48">
+                <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${item.image})` }}>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                </div>
+                <div className="absolute bottom-0 left-0 p-4">
+                  <span className="inline-block bg-secondary text-white text-xs px-2 py-1 rounded">
+                    {item.date}
+                  </span>
+                </div>
+              </div>
+              <div className="p-5">
+                <h3 className="text-xl font-bold mb-3 line-clamp-2">{item.title}</h3>
+                <p className="text-gray-700 mb-4 line-clamp-3">{item.excerpt}</p>
+                <a href="#" className="text-primary font-medium hover:text-secondary transition-colors">
+                  Leer más →
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        <div className="mt-12 text-center">
+          <a href="#" className="btn btn-primary">
+            Ver todas las noticias
+          </a>
+        </div>
+        
+        <div className="mt-16 bg-light p-8 rounded-lg">
+          <div className="flex flex-col md:flex-row items-center">
+            <div className="md:w-2/3 md:pr-10">
+              <h3 className="text-2xl font-bold mb-4">Suscríbase a nuestro boletín</h3>
+              <p className="text-gray-700 mb-6">
+                Reciba actualizaciones periódicas sobre nuestras actividades, proyectos y noticias corporativas.
+              </p>
+              <form className="flex flex-col sm:flex-row gap-4">
+                <input 
+                  type="email" 
+                  placeholder="Su correo electrónico" 
+                  className="flex-grow px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                  required
+                />
+                <button type="submit" className="btn btn-secondary whitespace-nowrap">
+                  Suscribirse
+                </button>
+              </form>
+              <p className="text-sm text-gray-500 mt-3">
+                Al suscribirse, acepta nuestra política de privacidad. Puede darse de baja en cualquier momento.
+              </p>
+            </div>
+            <div className="md:w-1/3 mt-6 md:mt-0">
+              <div className="relative h-48 w-48 mx-auto">
+                <div className="absolute inset-0 bg-secondary rounded-full opacity-10"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-24 w-24 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default NewsSection; 
+
+
+================================================================================
+ARCHIVO: src/sections/OperationsSection.tsx
+================================================================================
+
+import React, { useEffect, useState } from 'react';
+import { FaMountain, FaShip, FaCogs, FaIndustry, FaArrowRight, FaMapMarkerAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+
+const OperationsSection: React.FC = () => {
+  const [offset, setOffset] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sectionEl = document.getElementById('operations');
+      if (sectionEl) {
+        const rect = sectionEl.getBoundingClientRect();
+        const sectionTop = rect.top;
+        const sectionHeight = rect.height;
+        
+        // Solo aplicar parallax cuando la sección está visible
+        if (sectionTop < window.innerHeight && sectionTop > -sectionHeight) {
+          requestAnimationFrame(() => {
+            // Calculamos un valor relativo al scroll dentro de la sección
+            const relativeScroll = -sectionTop / (window.innerHeight + sectionHeight);
+            setOffset(relativeScroll * 260); // Aumentado para más rango de movimiento
+          });
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Llamada inicial para establecer la posición
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  // Resumen de operaciones principales
+  const operationsSummary = [
+    {
+      title: 'Minas',
+      icon: <FaMountain className="text-4xl text-secondary" />,
+      description: 'Explotación de minas de mineral de hierro y manganeso en Santa Cruz y Urucum, con técnicas sostenibles.'
+    },
+    {
+      title: 'Sistema Logístico',
+      icon: <FaShip className="text-4xl text-secondary" />,
+      description: 'Sistema logístico integrado que incluye ferrocarril y puerto propio, optimizando el transporte y reduciendo costos.'
+    },
+    {
+      title: 'Procesamiento',
+      icon: <FaCogs className="text-4xl text-secondary" />,
+      description: 'Procesamiento en seco que elimina la necesidad de presas de relaves, reduciendo el impacto ambiental.'
+    },
+    {
+      title: 'Producción',
+      icon: <FaIndustry className="text-4xl text-secondary" />,
+      description: 'Producción de granulado (lump) de alta calidad, reduciendo emisiones en la industria siderúrgica.'
+    }
+  ];
+
+  return (
+    <section id="operations" className="py-28 relative w-full min-h-screen overflow-hidden"> 
+      {/* Background image with parallax effect */}
+      <div className="absolute inset-0">
+        <div 
+          className="absolute inset-0 w-full h-[110%] -top-[5%]" 
+          style={{ 
+            transform: `translateY(${offset * 0.5}px)`,
+            transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+          }}
+        >
+          <img 
+            src="/galeria/Operacao-de-embarque-PCG.jpg" 
+            alt="Operaciones de embarque PCG" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        {/* Overlay with gradient */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/90 via-primary-dark/70 to-primary-dark/50"></div>
+      </div>
+      
+      {/* Content */}
+      <div className="relative h-full z-10">
+        <div className="container-custom mx-auto py-20">
+          {/* Título y subtítulo */}
+          <div className="mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Operaciones
+            </h2>
+            <div className="w-24 h-1 bg-secondary mb-6"></div>
+            <p className="text-xl text-white/90 max-w-2xl">
+              Nuestras operaciones abarcan desde la extracción hasta la logística integrada, 
+              destacando por la eficiencia, calidad y compromiso con la sustentabilidad 
+              en toda nuestra cadena productiva.
+            </p>
+          </div>
+          
+          {/* Layout con mapa a la izquierda y chips a la derecha */}
+          <div className="flex flex-col lg:flex-row gap-8 mb-10">
+            {/* Mapa (a la izquierda) */}
+            <div className="lg:w-2/5">
+              <div className="bg-white/10 backdrop-blur-sm p-4 rounded-lg h-full">
+                <div className="relative h-[350px] rounded-lg overflow-hidden border border-white/20">
+                  <img 
+                    src="public/mapa.jpg" 
+                    alt="Mapa de operaciones LHG Mining" 
+                    className="w-full h-full object-cover opacity-90"
+                  />
+                </div>
+              </div>
+            </div>
+            
+            {/* Chips de información (a la derecha) */}
+            <div className="lg:w-3/5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {operationsSummary.map((op, index) => (
+                  <div key={index} className="bg-white/10 backdrop-blur-sm p-6 rounded-lg transition-all duration-300 hover:bg-white/20">
+                    <div className="flex items-center mb-3">
+                      {op.icon}
+                      <h3 className="text-xl font-bold text-white ml-3">{op.title}</h3>
+                    </div>
+                    <p className="text-white/80">
+                      {op.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          
+          {/* Botón para ir a la página completa */}
+          <div className="flex justify-center">
+            <Link to="/operaciones" className="inline-flex items-center text-white bg-secondary hover:bg-secondary/90 px-8 py-4 text-lg rounded-lg font-medium transition-colors duration-300 shadow-md hover:shadow-lg">
+              Conocer más sobre nuestras operaciones
+              <FaArrowRight className="ml-3 text-xl" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default OperationsSection; 
+
+
+================================================================================
+ARCHIVO: src/sections/SustainabilitySection.tsx
+================================================================================
+
+import React from 'react';
+import { FaLeaf, FaHandsHelping, FaUsers, FaRecycle } from 'react-icons/fa';
+
+const SustainabilitySection: React.FC = () => {
+  const initiatives = [
+    {
+      title: 'Medio Ambiente',
+      icon: <FaLeaf className="text-4xl text-accent" />,
+      description: 'Implementamos prácticas mineras sostenibles para minimizar nuestro impacto ambiental y preservar la biodiversidad local.'
+    },
+    {
+      title: 'Comunidad',
+      icon: <FaHandsHelping className="text-4xl text-accent" />,
+      description: 'Apoyamos a las comunidades locales a través de proyectos sociales, educación y oportunidades de empleo.'
+    },
+    {
+      title: 'Personas',
+      icon: <FaUsers className="text-4xl text-accent" />,
+      description: 'Invertimos en nuestros empleados con programas de capacitación, seguridad laboral y desarrollo profesional.'
+    },
+    {
+      title: 'Economía Circular',
+      icon: <FaRecycle className="text-4xl text-accent" />,
+      description: 'Promovemos la economía circular mediante la reutilización de residuos y el uso eficiente de recursos.'
+    }
+  ];
+
+  return (
+    <section id="sustainability" className="py-16 bg-light">
+      <div className="container-custom">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Sostenibilidad</h2>
+          <div className="w-24 h-1 bg-secondary mx-auto"></div>
+          <p className="mt-6 text-lg text-gray-700 max-w-3xl mx-auto">
+            La sostenibilidad es un pilar fundamental en nuestra estrategia de negocio. 
+            Nos comprometemos a operar de manera responsable, minimizando nuestro impacto ambiental 
+            y contribuyendo positivamente a las comunidades donde operamos.
+          </p>
+        </div>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {initiatives.map((initiative, index) => (
+            <div key={index} className="bg-white p-6 rounded-lg shadow-md text-center">
+              <div className="inline-block p-4 bg-light rounded-full mb-4">{initiative.icon}</div>
+              <h3 className="text-xl font-bold mb-3">{initiative.title}</h3>
+              <p className="text-gray-700">{initiative.description}</p>
+            </div>
+          ))}
+        </div>
+        
+        <div className="mt-16 bg-white p-8 rounded-lg shadow-md">
+          <h3 className="text-2xl font-bold mb-6">Reporte de Sostenibilidad</h3>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <p className="text-gray-700 mb-4">
+                LHG Mining lanzó su primer Reporte de Sostenibilidad, destacando las principales iniciativas, 
+                estrategias y acciones en materia de medio ambiente, sostenibilidad, producción e inversión 
+                durante el año 2023.
+              </p>
+              <p className="text-gray-700 mb-4">
+                El informe presenta nuestros logros y establece objetivos ambiciosos para el futuro, 
+                reafirmando nuestro compromiso con un desarrollo minero responsable y sostenible.
+              </p>
+              <div className="mt-6">
+                <a href="#" className="btn btn-primary inline-flex items-center">
+                  Descargar Reporte
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            
+            <div className="relative h-64 md:h-auto rounded-lg overflow-hidden">
+              {/* We would use an actual image here */}
+              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1470813740244-df37b8c1edcb')] bg-cover bg-center">
+                <div className="absolute inset-0 bg-primary opacity-20"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div className="mt-8 bg-primary text-white p-6 rounded-lg">
+          <div className="flex flex-col md:flex-row items-center justify-between">
+            <div>
+              <h3 className="text-xl font-bold mb-2">Comprometidos con el futuro</h3>
+              <p className="text-white text-opacity-90">
+                Conozca más sobre nuestros proyectos de inversión social y ambiental.
+              </p>
+            </div>
+            <a href="#contact" className="btn bg-white text-primary hover:bg-gray-100 mt-4 md:mt-0">
+              Contactar
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default SustainabilitySection; 
+
+
+================================================================================
+ARCHIVO: src/vite-env.d.ts
+================================================================================
+
+/// <reference types="vite/client" />
+
+
+
+================================================================================
+ARCHIVO: tailwind.config.js
+================================================================================
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          DEFAULT: '#506B84', // Versión pastel del azul original
+          light: '#7A91A7',
+          dark: '#2F3E4B',
+        },
+        secondary: {
+          DEFAULT: '#F2AE30', // Nuevo color dorado
+          light: '#FFB08C',
+          dark: '#FD5200',
+        },
+        accent: {
+          blue: '#A8C0D6', // Azul pastel complementario
+          orange: '#FFD0B5', // Naranja pastel complementario
+          gray: '#E5E9ED', // Gris pastel para fondos
+          gold: '#F2AE30', // También lo añadimos como acento
+        },
+        dark: '#2D3748',
+        light: '#F7FAFC',
+      },
+      container: {
+        center: true,
+        padding: '1rem',
+      },
+      fontFamily: {
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
+    },
+  },
+  plugins: [],
+} 
+
+
+================================================================================
+ARCHIVO: tsconfig.app.json
+================================================================================
+
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["src"]
+}
+
+
+
+================================================================================
+ARCHIVO: tsconfig.json
+================================================================================
+
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}
+
+
+
+================================================================================
+ARCHIVO: tsconfig.node.json
+================================================================================
+
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+    "target": "ES2022",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["vite.config.ts"]
+}
+
+
+
+================================================================================
+ARCHIVO: vite.config.ts
+================================================================================
+
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  build: {
+    minify: 'terser',
+    cssMinify: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-icons'],
+          ui: ['tailwindcss']
+        }
+      }
+    }
+  },
+  server: {
+    port: 3000,
+    open: true
+  }
+})
