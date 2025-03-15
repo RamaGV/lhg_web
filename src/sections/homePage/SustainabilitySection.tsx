@@ -1,12 +1,11 @@
-import { Link } from 'react-router-dom';
 
 // Data
-import { mainInitiatives, sustainabilityPrinciples } from '../data/sustainabilityData';
+import { mainInitiatives, sustainabilityPrinciples } from '../../data/sustainabilityData';
 
 // Components
-import InitiativeCard from '../components/Home/sustainabilitySection/InitiativeCard';
-import PrincipleCard from '../components/Home/sustainabilitySection/PrincipleCard';
-import SustainabilityMoreButton from '../components/Home/sustainabilitySection/SustainabilityMoreButton';
+import InitiativeCard from '../../components/homePage/sustainabilitySection/InitiativeCard';
+import PrincipleCard from '../../components/homePage/sustainabilitySection/PrincipleCard';
+import SustainabilityMoreButton from '../../components/homePage/sustainabilitySection/SustainabilityMoreButton';
 
 export default function SustainabilitySection() {
   return (

@@ -1,4 +1,3 @@
-import React from 'react';
 
 interface InitiativeCardProps {
   icon: React.ReactNode;
@@ -14,7 +13,8 @@ const InitiativeCard: React.FC<InitiativeCardProps> = ({
   return (
     <div 
       className="
-        group bg-white rounded-xl shadow-lg px-6 py-4 
+        group rounded-xl shadow-lg px-6 py-4 
+        bg-white/70
         shadow-primary-dark/70 
         hover:shadow-secondary/10 
         hover:shadow-2xl hover:-translate-y-2 
@@ -23,7 +23,7 @@ const InitiativeCard: React.FC<InitiativeCardProps> = ({
     >
       <div className="mb-6 flex justify-center items-center">
         {icon}
-        <h3 className="ml-4 text-xl font-semibold text-primary-dark group-hover:text-secondary transition-colors duration-300">
+        <h3 className="ml-4 text-xl font-semibold text-primary-dark group-hover:text-secondary/80 transition-colors duration-300">
           {title}
         </h3>
       </div>

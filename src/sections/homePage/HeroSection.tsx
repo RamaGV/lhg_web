@@ -1,8 +1,8 @@
 import { HiUserGroup } from 'react-icons/hi';
 import { HiCog } from 'react-icons/hi2';
 import { PiLeafFill } from 'react-icons/pi';
-import ImageCarousel from '../components/Home/heroSection/ImageCarousel';
-import NavigationIcons from '../components/Home/heroSection/NavigationIcons';
+import ImageCarousel from '../../components/homePage/heroSection/ImageCarousel';
+import NavigationIcons from '../../components/homePage/heroSection/NavigationIcons';
 
 export default function HeroSection() {
   const carouselImages = [

@@ -1,130 +1,147 @@
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { FaEnvelope, FaMapMarkerAlt, FaArrowRight, FaTruck, FaUsers, FaNewspaper, FaShieldAlt } from 'react-icons/fa';
+import { contactChannels, newsItems } from '../data/contactData';
+import NewsCard from '../components/Home/contact/NewsCard';
 
 export default function ContactSection() {
+  // Solo mostramos las dos noticias más recientes
+  const recentNews = newsItems.slice(0, 2);
+
   return (
     <section id="contact" className="py-24 bg-light">
-      <div className="container-custom">
+      <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-secondary uppercase tracking-wider font-medium">Comuníquese con Nosotros</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Contacte</h2>
           <div className="w-24 h-1 bg-secondary mx-auto"></div>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Formulario de contacto */}
+        <div className="grid md:grid-cols-2 gap-12">
+          {/* Columna izquierda: Información de contacto */}
           <div className="bg-white p-8 rounded-xl shadow-lg">
-            <h3 className="text-2xl font-bold mb-6 text-primary">Envíenos un mensaje</h3>
-            <form>
-              <div className="mb-4">
-                <label htmlFor="name" className="block text-gray-700 font-medium mb-2">Nombre</label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                  placeholder="Su nombre" 
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="email" className="block text-gray-700 font-medium mb-2">Correo electrónico</label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                  placeholder="ejemplo@correo.com" 
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="subject" className="block text-gray-700 font-medium mb-2">Asunto</label>
-                <input 
-                  type="text" 
-                  id="subject" 
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                  placeholder="Asunto de su mensaje" 
-                />
-              </div>
-              <div className="mb-6">
-                <label htmlFor="message" className="block text-gray-700 font-medium mb-2">Mensaje</label>
-                <textarea 
-                  id="message" 
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent h-32"
-                  placeholder="Escriba su mensaje aquí..." 
-                ></textarea>
-              </div>
-              <button 
-                type="submit" 
-                className="w-full py-3 bg-primary text-white font-medium rounded-md hover:bg-primary/90 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-              >
-                Enviar mensaje
-              </button>
-            </form>
-          </div>
-          
-          {/* Información de contacto */}
-          <div>
-            <h3 className="text-2xl font-bold mb-6 text-primary">Información de contacto</h3>
-            <p className="text-gray-700 mb-8 leading-relaxed">
-              Para cualquier consulta o información adicional sobre nuestros servicios, productos o oportunidades laborales, no dude en contactarnos. Nuestro equipo está disponible para atenderle.
-            </p>
+            <h3 className="text-2xl font-bold mb-8 text-primary border-b border-gray-200 pb-4">Canales de Contacto</h3>
             
-            <div className="space-y-4 mb-8">
-              <div className="flex items-start">
-                <div className="bg-secondary/10 p-3 rounded-full mr-4">
-                  <FaMapMarkerAlt className="text-secondary" size={20} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-gray-800">Oficina Principal</h4>
-                  <p className="text-gray-700">Av. das Nações Unidas, 14401 - Chácara Santo Antônio<br />São Paulo, SP 04794-000, Brasil</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start">
-                <div className="bg-secondary/10 p-3 rounded-full mr-4">
+            <div className="space-y-6">
+              {/* Canal comercial */}
+              <div className="flex items-start gap-4">
+                <div className="bg-secondary/10 p-3 rounded-full">
                   <FaEnvelope className="text-secondary" size={20} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-gray-800">Correo electrónico</h4>
-                  <p className="text-gray-700">contacto@lhgmining.com</p>
-                  <p className="text-gray-700">negocios@lhgmining.com</p>
+                  <h4 className="font-bold text-gray-800">{contactChannels.commercial.title}</h4>
+                  <a href={`mailto:${contactChannels.commercial.email}`} className="text-secondary hover:underline">
+                    {contactChannels.commercial.email}
+                  </a>
                 </div>
               </div>
               
-              <div className="flex items-start">
-                <div className="bg-secondary/10 p-3 rounded-full mr-4">
-                  <FaPhone className="text-secondary" size={20} />
+              {/* Canal de proveedores */}
+              <div className="flex items-start gap-4">
+                <div className="bg-secondary/10 p-3 rounded-full">
+                  <FaTruck className="text-secondary" size={20} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-gray-800">Teléfono</h4>
-                  <p className="text-gray-700">+55 11 3035-3500</p>
+                  <h4 className="font-bold text-gray-800">{contactChannels.suppliers.title}</h4>
+                  <a href={`mailto:${contactChannels.suppliers.email}`} className="text-secondary hover:underline">
+                    {contactChannels.suppliers.email}
+                  </a>
+                </div>
+              </div>
+              
+              {/* Canal RH */}
+              <div className="flex items-start gap-4">
+                <div className="bg-secondary/10 p-3 rounded-full">
+                  <FaUsers className="text-secondary" size={20} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-gray-800">{contactChannels.hr.title}</h4>
+                  <a href={contactChannels.hr.url} className="text-secondary hover:underline" target="_blank" rel="noopener noreferrer">
+                    {contactChannels.hr.url}
+                  </a>
+                </div>
+              </div>
+              
+              {/* Canal de prensa */}
+              <div className="flex items-start gap-4">
+                <div className="bg-secondary/10 p-3 rounded-full">
+                  <FaNewspaper className="text-secondary" size={20} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-gray-800">{contactChannels.press.title}</h4>
+                  <a href={`mailto:${contactChannels.press.email}`} className="text-secondary hover:underline">
+                    {contactChannels.press.email}
+                  </a>
+                  <p className="text-gray-700">{contactChannels.press.phone}</p>
+                </div>
+              </div>
+              
+              {/* Canal Ético */}
+              <div className="flex items-start gap-4">
+                <div className="bg-secondary/10 p-3 rounded-full">
+                  <FaShieldAlt className="text-secondary" size={20} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-gray-800">{contactChannels.ethics.title}</h4>
+                  <a href={`mailto:${contactChannels.ethics.email}`} className="text-secondary hover:underline">
+                    {contactChannels.ethics.email}
+                  </a>
+                  <p className="text-gray-700">BRASIL: {contactChannels.ethics.phone.brazil}</p>
+                  <p className="text-gray-700">OTROS PAÍSES: {contactChannels.ethics.phone.international} (llamada por cobrar)</p>
+                  <p className="text-gray-600 mt-2 text-sm">{contactChannels.ethics.description}</p>
+                  <a 
+                    href={contactChannels.ethics.reportUrl} 
+                    className="mt-2 inline-block bg-primary text-white px-4 py-2 rounded-md text-sm hover:bg-primary/90 transition-colors"
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    Hacer una denuncia
+                  </a>
                 </div>
               </div>
             </div>
             
-            {/* Redes sociales */}
-            <div>
-              <h4 className="font-bold text-gray-800 mb-3">Síganos en:</h4>
-              <div className="flex space-x-4">
-                <a 
-                  href="#" 
-                  className="bg-primary text-white p-3 rounded-full hover:bg-secondary transition-colors"
-                  aria-label="LinkedIn"
-                >
-                  <FaLinkedin size={20} />
-                </a>
-                <a 
-                  href="#" 
-                  className="bg-primary text-white p-3 rounded-full hover:bg-secondary transition-colors"
-                  aria-label="Twitter"
-                >
-                  <FaTwitter size={20} />
-                </a>
-                <a 
-                  href="#" 
-                  className="bg-primary text-white p-3 rounded-full hover:bg-secondary transition-colors"
-                  aria-label="Instagram"
-                >
-                  <FaInstagram size={20} />
-                </a>
+            {/* Dirección física */}
+            <div className="mt-10 pt-6 border-t border-gray-200">
+              <div className="flex items-start gap-4">
+                <div className="bg-secondary/10 p-3 rounded-full">
+                  <FaMapMarkerAlt className="text-secondary" size={20} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-gray-800">Oficina Principal</h4>
+                  <p className="text-gray-700">
+                    Av. das Nações Unidas, 14401 - Chácara Santo Antônio<br />
+                    São Paulo, SP 04794-000, Brasil
+                  </p>
+                </div>
               </div>
+            </div>
+          </div>
+          
+          {/* Columna derecha: Noticias recientes */}
+          <div className="flex flex-col">
+            <h3 className="text-2xl font-bold mb-8 text-primary">Noticias Recientes</h3>
+            
+            <div className="grid grid-cols-1 gap-8 mb-8">
+              {recentNews.map((news) => (
+                <NewsCard 
+                  key={news.id}
+                  title={news.title}
+                  date={news.date}
+                  summary={news.summary}
+                  imageUrl={news.imageUrl}
+                  link={news.link}
+                />
+              ))}
+            </div>
+            
+            <div className="mt-auto text-center">
+              <Link 
+                to="/noticias" 
+                className="inline-flex items-center text-white bg-secondary hover:bg-secondary/90 px-6 py-3 rounded-lg font-medium transition-all duration-300 shadow-md hover:shadow-lg"
+              >
+                Ver todas las noticias
+                <FaArrowRight className="ml-2" />
+              </Link>
             </div>
           </div>
         </div>

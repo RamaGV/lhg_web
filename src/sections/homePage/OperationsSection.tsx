@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaMountain, FaShip, FaCogs, FaIndustry } from 'react-icons/fa';
-import OperationCard from '../components/Home/operationsSection/OperationCard';
-import OperationMoreButton from '../components/Home/operationsSection/OperationMoreButton';
+import OperationCard from '../../components/homePage/operationsSection/OperationCard';
+import OperationMoreButton from '../../components/homePage/operationsSection/OperationMoreButton';
 
 const OperationsSection: React.FC = () => {
   const [offset, setOffset] = useState(0);

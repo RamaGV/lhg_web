@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
 
 // Data
-import { beliefs, companyValues } from '../data/aboutSectionData';
+import { beliefs, companyValues } from '../../data/aboutSectionData';
 
 // Components
-import AboutMoreButton from '../components/Home/aboutSection/AboutMoreButton';
-import BeliefsCarousel from '../components/Home/aboutSection/BeliefsCarousel';
-import ValuesRotator from '../components/Home/aboutSection/ValuesRotator';
+import AboutMoreButton from '../../components/homePage/aboutSection/AboutMoreButton';
+import BeliefsCarousel from '../../components/homePage/aboutSection/BeliefsCarousel';
+import ValuesRotator from '../../components/homePage/aboutSection/ValuesRotator';
 
 export default function AboutSection() {
   return (

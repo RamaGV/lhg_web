@@ -5,7 +5,13 @@ import {
   FaShieldAlt, 
   FaChartLine, 
   FaRegLightbulb, 
-  FaSeedling 
+  FaSeedling,
+  FaEnvelope, 
+  FaMapMarkerAlt, 
+  FaTruck, 
+  FaUsers, 
+  FaNewspaper,
+  FaArrowRight
 } from 'react-icons/fa';
 
 export const SustainabilityIcons = {
@@ -17,3 +23,14 @@ export const SustainabilityIcons = {
   LightBulb: <FaRegLightbulb className="text-3xl text-secondary" />,
   Seedling: <FaSeedling className="text-3xl text-secondary" />
 };
+
+export const ContactIcons = {
+  Email: <FaEnvelope className="text-secondary" size={20} />,
+  Location: <FaMapMarkerAlt className="text-secondary" size={20} />,
+  Suppliers: <FaTruck className="text-secondary" size={20} />,
+  HR: <FaUsers className="text-secondary" size={20} />,
+  Press: <FaNewspaper className="text-secondary" size={20} />,
+  Ethics: <FaShieldAlt className="text-secondary" size={20} />
+};
+
+export const VerMasIcon = <FaArrowRight size={20} />;

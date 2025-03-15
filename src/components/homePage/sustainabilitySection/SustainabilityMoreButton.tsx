@@ -1,6 +1,5 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaArrowRight } from 'react-icons/fa';
+import { VerMasIcon } from '../../../data/icons';
 
 interface SustainabilityMoreButtonProps {
   text?: string;
@@ -22,7 +21,9 @@ const SustainabilityMoreButton: React.FC<SustainabilityMoreButtonProps> = ({
       "
     >
       {text}
-      <FaArrowRight className="ml-3 text-xl transform group-hover:translate-x-1 transition-transform duration-300" />
+      <span className="ml-3 transform group-hover:translate-x-1 transition-transform duration-300">
+        {VerMasIcon}
+      </span>
     </Link>
   );
 };
