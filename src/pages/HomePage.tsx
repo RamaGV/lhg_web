@@ -2,6 +2,7 @@
 
 // Components
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 // Sections
 import HeroSection from '../sections/homePage/HeroSection';
@@ -10,7 +11,7 @@ import OperationsSection from '../sections/homePage/OperationsSection';
 import SustainabilitySection from '../sections/homePage/SustainabilitySection';
 import ContactSection from '../sections/homePage/ContactSection';
 
-const Home: React.FC = () => {
+export default function HomePage() {
   return (
     <>
       <Navbar />
@@ -21,8 +22,7 @@ const Home: React.FC = () => {
         <SustainabilitySection />
         <ContactSection />
       </main>
+      <Footer />
     </>
   );
 };
-
-export default Home; 

@@ -2,17 +2,13 @@
 
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import HeroSection from './sections/homePage/HeroSection';
-import AboutSection from './sections/homePage/AboutSection';
-import OperationsSection from './sections/homePage/OperationsSection';
-import SustainabilitySection from './sections/homePage/SustainabilitySection';
-import ContactSection from './sections/homePage/ContactSection';
+
+import HomePage from './pages/HomePage';
 import SustainabilityPage from './pages/SustainabilityPage';
 import Operaciones from './pages/Operaciones';
 import QuienesSomos from './pages/QuienesSomos';
 import NoticiasPage from './pages/NoticiasPage';
-import Footer from './components/Footer';
+
 
 import './App.css';
 
@@ -21,17 +17,7 @@ const App: React.FC = () => {
     <Router>
       <div className="min-h-screen bg-white">
         <Routes>
-          <Route path="/" element={
-            <>
-              <Navbar />
-              <HeroSection />
-              <AboutSection />
-              <OperationsSection />
-              <SustainabilitySection />
-              <ContactSection />
-              <Footer />
-            </>
-          } />
+          <Route path="/" element={<HomePage />} />
           <Route path="/quienes-somos" element={<QuienesSomos />} />
           <Route path="/operaciones" element={<Operaciones />} />
           <Route path="/sostenibilidad" element={<SustainabilityPage />} />
