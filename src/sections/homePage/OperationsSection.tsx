@@ -1,9 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { FaMountain, FaShip, FaCogs, FaIndustry } from 'react-icons/fa';
-import OperationCard from '../../components/homePage/operationsSection/OperationCard';
-import OperationMoreButton from '../../components/homePage/operationsSection/OperationMoreButton';
+// src/sections/homePage/OperationsSection.tsx
 
-const OperationsSection: React.FC = () => {
+import { useEffect, useState } from 'react';
+
+// Data
+import { operationsSummary } from '../../data/operationsSectionData';
+
+// Components
+import OperationCard from '../../components/homePage/operationsSection/OperationCard';
+import VerMasButton from '../../components/homePage/VerMasButton';
+import Title from '../../components/homePage/Title';
+
+
+export default function OperationsSection() {
   const [offset, setOffset] = useState(0);
 
   useEffect(() => {
@@ -32,30 +40,6 @@ const OperationsSection: React.FC = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  // Resumen de operaciones principales
-  const operationsSummary = [
-    {
-      title: 'Minas',
-      icon: <FaMountain className="text-4xl text-secondary" />,
-      description: 'Explotación de minas de mineral de hierro y manganeso en Santa Cruz y Urucum, con técnicas sostenibles.'
-    },
-    {
-      title: 'Sistema Logístico',
-      icon: <FaShip className="text-4xl text-secondary" />,
-      description: 'Sistema logístico integrado que incluye ferrocarril y puerto propio, optimizando el transporte y reduciendo costos.'
-    },
-    {
-      title: 'Procesamiento',
-      icon: <FaCogs className="text-4xl text-secondary" />,
-      description: 'Procesamiento en seco que elimina la necesidad de presas de relaves, reduciendo el impacto ambiental.'
-    },
-    {
-      title: 'Producción',
-      icon: <FaIndustry className="text-4xl text-secondary" />,
-      description: 'Producción de granulado (lump) de alta calidad, reduciendo emisiones en la industria siderúrgica.'
-    }
-  ];
 
   return (
     <section id="operations" className="py-28 relative w-full min-h-screen overflow-hidden shadow-xl shadow-gary-900"> 
@@ -86,10 +70,7 @@ const OperationsSection: React.FC = () => {
             <div className="lg:w-1/2">
               {/* Título y subtítulo */}
               <div className="mb-8">
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                  Operaciones
-                </h2>
-                <div className="w-24 h-1 bg-secondary mb-6"></div>
+                <Title title="Operaciones" type="secondary" />
                 <p className="text-white/80 text-lg leading-relaxed">
                   LHG Mining llega al mercado con una estructura liviana y la capacidad de invertir en la expansión de sus vastas reservas de mineral de hierro de alta ley. Su objetivo es ser una solución única y confiable para la cadena de producción de acero sostenible, contribuyendo para la reducción de las emisiones de gases del efecto invernadero.
                 </p>
@@ -126,11 +107,12 @@ const OperationsSection: React.FC = () => {
                 ))}
               </div>
               
-              {/* Botón para ir a la página completa */}
+              {/* Call to action */}
               <div className="flex justify-center">
-                <OperationMoreButton
+                <VerMasButton
                   text="Conocer más sobre nuestras operaciones" 
                   to="/operaciones" 
+                  type="primary"
                 />
               </div>
             </div>
@@ -140,5 +122,3 @@ const OperationsSection: React.FC = () => {
     </section>
   );
 };
-
-export default OperationsSection; 

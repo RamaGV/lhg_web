@@ -32,7 +32,6 @@ export const newsItems = [
   {
     id: "reporte-sustentabilidad",
     title: "LHG Mining lanza primer Reporte de Sustentabilidad",
-    date: "25 de marzo de 2024",
     summary: "LHG Mining presenta su primer reporte de sostenibilidad, destacando iniciativas, estrategias y acciones en materia de medio ambiente, producción e inversión durante 2023, y estableciendo ambiciosas metas para 2024.",
     imageUrl: "/news/Rede-Sustentabilidade.jpg",
     link: "/noticias/#reporte-sustentabilidad"
@@ -40,7 +39,6 @@ export const newsItems = [
   {
     id: "patrocina-moinho",
     title: "LHG Mining patrocina R$ 500.000 para el Instituto Moinho Cultural Sul-Americano en Corumbá (MS)",
-    date: "10 de enero de 2024",
     summary: "LHG Mining anuncia un patrocinio de R$ 500.000 al Instituto Moinho Cultural Sul-Americano, impulsando iniciativas culturales y educativas en Corumbá (MS).",
     imageUrl: "/news/moinho.png",
     link: "/noticias/#patrocina-moinho"
@@ -56,7 +54,6 @@ export const newsItems = [
   {
     id: "amplia-contrataciones",
     title: "JF amplía contrataciones en Corumbá y recibe a 600 nuevos empleados",
-    date: "31 de marzo de 2023",
     summary: "JF refuerza su presencia en Mato Grosso do Sul al incorporar a 600 nuevos empleados, en una estrategia que apunta a modernizar y expandir sus operaciones en la región.",
     imageUrl: "/news/Funcionarios-em-Corumba-MS.jpg",
     link: "/noticias/#amplia-contrataciones"
@@ -64,7 +61,6 @@ export const newsItems = [
   {
     id: "transbordo-hierro",
     title: "LHG Mining realiza la primera operación de transbordo de mineral de hierro en un único navío",
-    date: "31 de marzo de 2023",
     summary: "LHG Mining ejecutó por primera vez una operación de transbordo, cargando 175 mil toneladas de mineral de hierro en un único navío capesize, lo que marca un hito en la exportación desde Corumbá y permite reducir el flete marítimo hasta en un 15%.",
     imageUrl: "/news/mapa_jef_recorte-1280x694.png",
     link: "/noticias/#transbordo-hierro"
@@ -72,7 +68,6 @@ export const newsItems = [
   {
     id: "reanuda-manganeso",
     title: "LHG Mining reanuda la producción de manganeso y contrata empleados en Corumbá (Estado de Mato Grosso do Sul)",
-    date: "31 de marzo de 2023",
     summary: "LHG Mining reanuda la producción de manganeso en la mina de Urucum en Corumbá, contratando 100 empleados directos para impulsar la producción a 450 mil toneladas en 2023, con proyección de alcanzar 600 mil.",
     imageUrl: "/news/Lavra-subterranea-manganes-mina-Urucum--1280x720.jpg",
     link: "/noticias/#reanuda-manganeso"
@@ -80,7 +75,6 @@ export const newsItems = [
   {
     id: "recuperacion-areas",
     title: "Recuperación de áreas recibe refuerzo en la operación de J&J Mineração en Corumbá (Estado de Mato Grosso do Sul)",
-    date: "31 de marzo de 2023",
     summary: "LHG Mining refuerza la recuperación de áreas en la operación de J&J Mineração en Corumbá, incorporando un equipo de hidrosiembra que agiliza el replantado de especies nativas del Pantanal y fija una meta de recuperar 11,3 hectáreas en 2023.",
     imageUrl: "/news/rcuperacion-areas/hidrosemeadura1.jpg",
     link: "/noticias/#recuperacion-areas"

@@ -6,14 +6,12 @@ interface VerMasButtonProps {
   type?: 'primary' | 'secondary';
   text: string;
   to: string;
-  className?: string;
 }
 
 const VerMasButton: React.FC<VerMasButtonProps> = ({ 
   type = 'primary', 
   text, 
   to, 
-  className 
 }) => {
   const baseClasses = "w-full flex items-center justify-center px-8 py-4 text-lg rounded-lg group font-medium transition-all duration-300 shadow-md hover:shadow-lg";
   
@@ -27,8 +25,7 @@ const VerMasButton: React.FC<VerMasButtonProps> = ({
       to={to} 
       className={`
         ${baseClasses} 
-        ${typeClasses[type]} 
-        ${className || ''}
+        ${typeClasses[type]}
       `}
     >
       {text}

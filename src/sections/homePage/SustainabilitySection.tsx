@@ -1,11 +1,15 @@
+// src/sections/homePage/SustainabilitySection.tsx
 
 // Data
 import { mainInitiatives, sustainabilityPrinciples } from '../../data/sustainabilityData';
 
-// Components
+// Components from Section
 import InitiativeCard from '../../components/homePage/sustainabilitySection/InitiativeCard';
 import PrincipleCard from '../../components/homePage/sustainabilitySection/PrincipleCard';
-import SustainabilityMoreButton from '../../components/homePage/sustainabilitySection/SustainabilityMoreButton';
+
+// Components from Page
+import VerMasButton from '../../components/homePage/VerMasButton';
+import Title from '../../components/homePage/Title';
 
 export default function SustainabilitySection() {
   return (
@@ -14,10 +18,7 @@ export default function SustainabilitySection() {
       <div className="container-custom relative z-10">
         {/* Encabezado con énfasis especial */}
         <div className="text-center mb-16 max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-white/90 mb-4">
-            Sustentibilidad
-          </h2>
-          <div className="w-20 h-1 bg-secondary mx-auto mb-8"></div>
+          <Title title="Sustentibilidad" type="secondary" />
           <p className="text-lg text-white/70 font-light leading-relaxed max-w-full mx-auto">
             En LHG Mining, la sostenibilidad no es solo una meta, es el eje central de nuestras operaciones.
             Como parte del grupo J&F Investimentos, seguimos directrices claras que combinan
@@ -50,7 +51,11 @@ export default function SustainabilitySection() {
             </div>
             {/* Call to Action */}
             <div className="text-center mt-16">
-              <SustainabilityMoreButton />
+              <VerMasButton
+                  text="Conocer más sobre nuestra sostenibilidad" 
+                to="/sustentibilidad" 
+                type="primary"
+              />
             </div>
           </div>
           

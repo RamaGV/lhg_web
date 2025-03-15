@@ -1,28 +1,29 @@
+// src/sections/homePage/AboutSection.tsx
 
 // Data
 import { beliefs, companyValues } from '../../data/aboutSectionData';
 
-// Components
-import AboutMoreButton from '../../components/homePage/aboutSection/AboutMoreButton';
+// Components from Section
 import BeliefsCarousel from '../../components/homePage/aboutSection/BeliefsCarousel';
 import ValuesRotator from '../../components/homePage/aboutSection/ValuesRotator';
+
+// Components from Page
+import VerMasButton from '../../components/homePage/VerMasButton';
+import Title from '../../components/homePage/Title';
 
 export default function AboutSection() {
   return (
     <section id="about" className="pt-28 pb-12 bg-light select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary-dark mt-2 mb-4">Quienes Somos</h2>
-          <div className="w-24 h-1 bg-secondary mx-auto"></div>
-        </div>
+        <Title title="Quienes Somos" type="primary" />
         
         <div className="flex flex-col space-y-16">
           {/* Main content - 3/4 of the vertical space */}
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="flex flex-col h-full items-center justify-between space-y-12">
               <h3 className="text-2xl text-start font-bold text-primary-dark ">Liderando el camino hacia una minería más sostenible</h3>
-              <div>
-                <p className="text-base text-gray-700 leading-relaxed">
+              <div className="text-start mx-4">
+                <p className="text-base text-gray-700 leading-relaxed mb-2">
                   LHG Mining fue fundada en 2022, con la adquisición de MCR (Mineração Corumbaense Reunida) por el Grupo J&F, el mayor grupo empresarial de Brasil. Con puerto propio, logística integrada y operaciones optimizadas de mineral de hierro y mineral de manganeso.
                 </p>
                 <p className="text-base text-gray-700 leading-relaxed">
@@ -30,8 +31,12 @@ export default function AboutSection() {
                 </p>
               </div>
               
-              {/* Call to action button */}
-              <AboutMoreButton text="Conocer más sobre nosotros" to="/quienes-somos" />
+              {/* Call to action */}
+              <VerMasButton 
+                text="Conocer más sobre nosotros" 
+                to="/quienes-somos" 
+                type="secondary"
+              />
             </div>
             
             {/* Values Rotator */}
@@ -48,7 +53,12 @@ export default function AboutSection() {
           
           {/* Beliefs - 1/4 of the vertical space */}
           <div className="w-full">
-            <h3 className="text-2xl font-bold mb-6 text-primary-dark">Nuestras creencias</h3>
+            <h3 className="
+                text-center mb-6 
+                text-xl font-semibold
+                text-primary-dark
+              "
+            >Nuestras creencias</h3>
             <BeliefsCarousel beliefs={beliefs} />
           </div>
         </div>

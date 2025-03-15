@@ -1,11 +1,14 @@
-import React from 'react';
+// src/pages/Home.tsx
+
+// Components
 import Navbar from '../components/Navbar';
+
+// Sections
 import HeroSection from '../sections/homePage/HeroSection';
 import AboutSection from '../sections/homePage/AboutSection';
 import OperationsSection from '../sections/homePage/OperationsSection';
 import SustainabilitySection from '../sections/homePage/SustainabilitySection';
 import ContactSection from '../sections/homePage/ContactSection';
-import Footer from '../components/Footer';
 
 const Home: React.FC = () => {
   return (
@@ -18,7 +21,6 @@ const Home: React.FC = () => {
         <SustainabilitySection />
         <ContactSection />
       </main>
-      <Footer />
     </>
   );
 };

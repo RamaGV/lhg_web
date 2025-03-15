@@ -110,24 +110,6 @@ const Footer: React.FC = () => {
           </div>
         </div>
       </div>
-      
-      {/* Bottom Footer */}
-      <div className="bg-dark py-4">
-        <div className="container-custom">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-gray-400 text-sm mb-4 md:mb-0">
-              &copy; {new Date().getFullYear()} LHG Mining. Todos los derechos reservados.
-            </div>
-            <div className="flex space-x-4 text-sm text-gray-400">
-              <a href="#" className="hover:text-white transition-colors">Términos y Condiciones</a>
-              <span>|</span>
-              <a href="#" className="hover:text-white transition-colors">Política de Privacidad</a>
-              <span>|</span>
-              <a href="#" className="hover:text-white transition-colors">Portal de Privacidad</a>
-            </div>
-          </div>
-        </div>
-      </div>
     </footer>
   );
 };

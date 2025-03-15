@@ -1,25 +1,27 @@
+// src/sections/homePage/ContactSection.tsx
+
 // Data
 import { contactChannels, newsItems } from '../../data/contactData';
 import { ContactIcons } from '../../data/icons';
 
-// Components
+// Components from Contact
 import ContactChannel from '../../components/homePage/contactSection/ContactChannel';
 import EthicsChannel from '../../components/homePage/contactSection/EthicsChannel';
 import NewsCard from '../../components/homePage/contactSection/NewsCard';
-import { FaArrowRight } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+
+// Components from Page
+import VerMasButton from '../../components/homePage/VerMasButton';
+import Title from '../../components/homePage/Title';
+
 
 export default function ContactSection() {
   // Solo mostramos las dos noticias más recientes
   const recentNews = newsItems.slice(0, 2);
 
   return (
-    <section id="contact" className="py-24 bg-light">
+    <section id="contact" className="py-24 bg-light select-none">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Contacte</h2>
-          <div className="w-24 h-1 bg-secondary mx-auto"></div>
-        </div>
+        <Title title="Contacto" type="primary" />
         
         <div className="grid md:grid-cols-2 gap-12">
           {/* Columna izquierda: Información de contacto */}
@@ -70,26 +72,13 @@ export default function ContactSection() {
                 reportUrl={contactChannels.ethics.reportUrl}
               />
             </div>
-            
-            {/* Dirección física */}
-            <div className="mt-10 pt-6 border-t border-gray-200">
-              <ContactChannel 
-                icon={ContactIcons.Location}
-                title="Oficina Principal"
-              >
-                <p className="text-gray-700">
-                  Av. das Nações Unidas, 14401 - Chácara Santo Antônio<br />
-                  São Paulo, SP 04794-000, Brasil
-                </p>
-              </ContactChannel>
-            </div>
           </div>
           
           {/* Columna derecha: Noticias recientes */}
           <div className="flex flex-col">
-            <h3 className="text-2xl font-bold mb-8 text-primary">Noticias Recientes</h3>
+            <h3 className="text-2xl font-bold mb-8 text-primary-dark">Noticias Recientes</h3>
             
-            <div className="grid grid-cols-1 gap-8 mb-8">
+            <div className="grid grid-cols-2 gap-8 mb-8">
               {recentNews.map((news) => (
                 <NewsCard 
                   key={news.id}
@@ -101,14 +90,13 @@ export default function ContactSection() {
               ))}
             </div>
             
+            {/* Call to action */}
             <div className="mt-auto text-center">
-              <Link
+              <VerMasButton
+                text="Ver todas las noticias" 
                 to="/noticias" 
-                className="inline-flex items-center text-white bg-secondary hover:bg-secondary/90 px-6 py-3 rounded-lg font-medium transition-all duration-300 shadow-md hover:shadow-lg"
-              >
-                Ver todas las noticias
-                <FaArrowRight className="ml-2" />
-              </Link>
+                type="primary"
+              />
             </div>
           </div>
         </div>

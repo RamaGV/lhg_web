@@ -11,8 +11,19 @@ import {
   FaTruck, 
   FaUsers, 
   FaNewspaper,
-  FaArrowRight
+  FaArrowRight,
+  FaMountain,
+  FaShip,
+  FaCogs,
+  FaIndustry
 } from 'react-icons/fa';
+
+export const OperationsIcons = {
+  FaMountain: <FaMountain className="text-4xl text-secondary" />,
+  FaShip: <FaShip className="text-4xl text-secondary" />,
+  FaCogs: <FaCogs className="text-4xl text-secondary" />,
+  FaIndustry: <FaIndustry className="text-4xl text-secondary" />
+}
 
 export const SustainabilityIcons = {
   Leaf: <FaLeaf className="text-5xl text-secondary text-opacity-80" />,
