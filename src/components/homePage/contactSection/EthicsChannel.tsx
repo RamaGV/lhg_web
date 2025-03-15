@@ -25,20 +25,31 @@ const EthicsChannel: React.FC<EthicsChannelProps> = ({
       icon={ContactIcons.Ethics}
       title={title}
     >
-      <a href={`mailto:${email}`} className="text-secondary hover:underline">
-        {email}
-      </a>
-      <p className="text-gray-700">BRASIL: {phone.brazil}</p>
-      <p className="text-gray-700">OTROS PAÍSES: {phone.international} (llamada por cobrar)</p>
-      <p className="text-gray-600 mt-2 text-sm">{description}</p>
-      <a 
-        href={reportUrl} 
-        className="mt-2 inline-block bg-primary text-white px-4 py-2 rounded-md text-sm hover:bg-primary/90 transition-colors"
-        target="_blank" 
-        rel="noopener noreferrer"
-      >
-        Hacer una denuncia
-      </a>
+      <div className="flex flex-col gap-2">
+        <a 
+          href={`mailto:${email}`} 
+          className="  
+            text-secondary/70 
+            hover:text-secondary 
+          transition-colors duration-200
+        "
+        >
+          Enviar consulta
+        </a>
+        <div>
+          <p className="text-white/80">OTROS PAÍSES: {phone.international}</p>
+          <p className="text-white/80">BRASIL: {phone.brazil}</p>
+        </div>
+        <p className="text-white mt-2 text-sm">{description}</p>
+        <a 
+          href={reportUrl} 
+          className="mt-2 inline-block bg-primary text-white px-4 py-2 rounded-md text-sm hover:bg-primary/90 transition-colors"
+          target="_blank" 
+          rel="noopener noreferrer"
+        >
+          Hacer una denuncia
+        </a>
+      </div>
     </ContactChannel>
   );
 };

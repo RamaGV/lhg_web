@@ -44,19 +44,19 @@ export default function ContactSection() {
                 isEmail={true}
               />
               
-              {/* Canal RH */}
-              <ContactChannel 
-                icon={ContactIcons.HR}
-                title={contactChannels.hr.title}
-                link={contactChannels.hr.url}
-              />
-              
               {/* Canal de prensa */}
               <ContactChannel 
                 icon={ContactIcons.Press}
                 title={contactChannels.press.title}
                 link={contactChannels.press.email}
                 isEmail={true}
+              />
+              
+              {/* Canal RH */}
+              <ContactChannel 
+                icon={ContactIcons.HR}
+                title={contactChannels.hr.title}
+                link={contactChannels.hr.url}
               />
             </div>
             
@@ -94,7 +94,6 @@ export default function ContactSection() {
                 <NewsCard 
                   key={news.id}
                   title={news.title}
-                  date={news.date}
                   summary={news.summary}
                   imageUrl={news.imageUrl}
                   link={news.link}
