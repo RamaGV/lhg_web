@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 interface NavLinkProps {
@@ -14,17 +14,31 @@ const NavLink: React.FC<NavLinkProps> = ({
   scrollToSection,
   isScrolled 
 }) => {
+  const [isPressed, setIsPressed] = useState(false);
+  
+  const handleClick = () => {
+    setIsPressed(true);
+    scrollToSection(sectionId);
+    
+    // Resetear el estado después de la transición
+    setTimeout(() => {
+      setIsPressed(false);
+    }, 3000);
+  };
+  
   return (
     <Link
       to={`#${sectionId}`}
       key={sectionId}
-      onClick={() => scrollToSection(sectionId)}
+      onClick={handleClick}
       className={`
-        transition-colors duration-300 
-        ${isScrolled ? 'bg-primary-dark' : 'bg-transparent'}
-        ${isScrolled ? 'text-lg font-light' : 'text-xl'}
-        ${isScrolled ? 'text-light' : 'text-light/90'}
-        ${isScrolled ? 'hover:text-secondary/80' : 'hover:text-secondary'}
+        transition-colors duration-3000 
+        flex-1 text-center whitespace-nowrap px-2 sm:px-3
+        ${isScrolled ? 'text-sm md:text-lg font-light' : 'text-base md:text-xl'} 
+        ${isPressed ? 'text-secondary' : isScrolled ? 'text-light' : 'text-light/90'}
+        hover:text-secondary/80
+        cursor-pointer
+        active:translate-y-0.5
       `}
     >
       {name}

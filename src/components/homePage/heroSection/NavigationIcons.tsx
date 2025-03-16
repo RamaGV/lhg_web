@@ -14,7 +14,7 @@ interface NavigationIconsProps {
 
 const NavigationIcons: React.FC<NavigationIconsProps> = ({ items, className = "" }) => {
   return (
-    <div className={`absolute bottom-20 left-0 right-0 z-20 ${className}`}>
+    <div className={`absolute bottom-32 left-0 right-0 z-20 ${className}`}>
       <div className="w-full max-w-[90%] mx-auto">
         <div className={`flex flex-col-${items.length} gap-8 max-w-4xl`}>
           {items.map((item, index) => (
@@ -28,7 +28,12 @@ const NavigationIcons: React.FC<NavigationIconsProps> = ({ items, className = ""
                   className: "w-8 h-8 text-white transition-colors duration-300 group-hover:text-secondary"
                 })}
               </div>
-              <span className="text-lg font-light transition-colors duration-300 group-hover:text-secondary">
+              <span className="
+                text-sm sm:text-lg lg:text-xl
+                font-light  text-center
+                transition-colors duration-300 
+                group-hover:text-secondary
+              ">
                 {item.label}
               </span>
             </a>

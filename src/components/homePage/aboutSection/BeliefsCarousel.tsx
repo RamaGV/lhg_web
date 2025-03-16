@@ -48,10 +48,16 @@ const BeliefsCarousel: React.FC<BeliefsCarouselProps> = ({ beliefs }) => {
               <img 
                 src={`/icons/creencias/${belief.icon}`} 
                 alt={belief.title} 
-                className="w-12 h-12 object-contain"
+                className="
+                  w-10 h-10 md:w-12 md:h-12
+                  object-contain
+                "
               />
             </div>
-            <p className="text-center text-primary-dark font-medium">{belief.title}</p>
+            <p className="
+              text-center text-primary-dark font-medium
+              text-sm md:text-base
+              ">{belief.title}</p>
           </div>
         ))}
       </div>

@@ -13,7 +13,7 @@ const Logo: React.FC<LogoProps> = ({ to, isScrolled }) => {
         <img 
           className={`
             transition-all duration-500 ease-in-out
-            ${isScrolled ? 'h-10 w-auto' : 'h-12 w-auto'}
+            ${isScrolled ? 'h-8 sm:h-9 md:h-10 w-auto' : 'h-10 sm:h-11 md:h-12 w-auto'}
           `}
           src="/icons/lhgmining.svg" 
           alt="LHG Mining" 

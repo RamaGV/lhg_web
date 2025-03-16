@@ -13,7 +13,15 @@ const VerMasButton: React.FC<VerMasButtonProps> = ({
   text, 
   to, 
 }) => {
-  const baseClasses = "w-full flex items-center justify-center px-8 py-4 text-lg rounded-lg group font-medium transition-all duration-300 shadow-md hover:shadow-lg";
+  const baseClasses = `
+    w-full flex items-center justify-center 
+    px-4 sm:px-6 md:px-8 
+    py-2 sm:py-3 md:py-4 
+    text-sm sm:text-md md:text-lg 
+    rounded-lg group font-medium 
+    transition-all duration-300 
+    shadow-md hover:shadow-lg
+  `;
   
   const typeClasses = {
     primary: "text-gray-950 bg-secondary hover:bg-secondary/90 hover:text-white/90",
@@ -29,7 +37,7 @@ const VerMasButton: React.FC<VerMasButtonProps> = ({
       `}
     >
       {text}
-      <span className="ml-3 transform group-hover:translate-x-1 transition-transform duration-300">
+      <span className="ml-2 sm:ml-3 transform group-hover:translate-x-1 transition-transform duration-300">
         {VerMasIcon}
       </span>
     </Link>

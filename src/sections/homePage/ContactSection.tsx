@@ -19,17 +19,24 @@ export default function ContactSection() {
   const recentNews = newsItems.slice(0, 2);
 
   return (
-    <section id="contact" className="pt-24 pb-12 bg-light select-none">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="py-20 sm:py-24 px-6 bg-light select-none">
+      <div className="container-custom">
         <Title title="Contacto" type="primary" />
         
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-8 sm:gap-12">
           {/* Columna izquierda: Información de contacto */}
-          <div className="bg-gradient-to-b from-gray-800 to-gray-950 p-8 rounded-xl shadow-lg">
-            <h3 className="text-2xl font-bold mb-8 text-white border-b border-gray-200 pb-4">Canales de Contacto</h3>
+          <div className="bg-gradient-to-b from-gray-800 to-gray-950 p-4 sm:p-6 md:p-8 rounded-xl shadow-lg">
+            <h3 className="
+              text-xl sm:text-2xl 
+              font-bold mb-6 sm:mb-8 
+              text-white 
+              border-b border-gray-200 pb-3 sm:pb-4
+            ">
+              Canales de Contacto
+            </h3>
             
             {/* Grid de 2x2 para los canales simples */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
               {/* Canal comercial */}
               <ContactChannel 
                 icon={ContactIcons.Email}
@@ -63,7 +70,7 @@ export default function ContactSection() {
             </div>
             
             {/* Canal Ético - Ocupa todo el ancho */}
-            <div className="border-t border-gray-200 pt-8">
+            <div className="border-t border-gray-200 pt-6 sm:pt-8">
               <EthicsChannel 
                 title={contactChannels.ethics.title}
                 email={contactChannels.ethics.email}
@@ -76,9 +83,15 @@ export default function ContactSection() {
           
           {/* Columna derecha: Noticias recientes */}
           <div className="flex flex-col">
-            <h3 className="text-2xl font-bold mb-8 text-primary-dark">Noticias Recientes</h3>
+            <h3 className="
+              text-xl sm:text-2xl 
+              font-bold mb-6 sm:mb-8 
+              text-primary-dark
+            ">
+              Noticias Recientes
+            </h3>
             
-            <div className="grid grid-cols-2 gap-8 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
               {recentNews.map((news) => (
                 <NewsCard 
                   key={news.id}
@@ -91,7 +104,7 @@ export default function ContactSection() {
             </div>
             
             {/* Call to action */}
-            <div className="mt-auto text-center">
+            <div className="mt-auto text-center pt-4">
               <VerMasButton
                 text="Ver todas las noticias" 
                 to="/noticias" 

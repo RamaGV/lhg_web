@@ -58,8 +58,11 @@ export default function HeroSection() {
       </div>
       
       {/* Content */}
-      <div className="relative h-full z-10 flex items-center">
-        <div className="w-full max-w-[90%] mx-auto">
+      <div className="
+        relative h-full z-10 
+        flex items-center
+      ">
+        <div className="container-custom flex items-center">
           <div className="max-w-4xl">
             <h1 className="
               mb-8 leading-tight
