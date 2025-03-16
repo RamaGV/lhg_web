@@ -28,10 +28,6 @@
   .btn-secondary {
     @apply bg-secondary text-white hover:bg-opacity-90;
   }
-  
-  .container-custom {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-  }
 }
 
 :root {

@@ -61,7 +61,11 @@ export default function HeroSection() {
       <div className="relative h-full z-10 flex items-center">
         <div className="w-full max-w-[90%] mx-auto">
           <div className="max-w-4xl">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight">
+            <h1 className="
+              mb-8 leading-tight
+              text-3xl md:text-4xl lg:text-6xl xl:text-7xl 
+              font-bold text-white 
+            ">
               «Trabajamos con tecnologías pioneras para producir un acero más sostenible«
             </h1>
           </div>

@@ -15,7 +15,12 @@ import {
   FaMountain,
   FaShip,
   FaCogs,
-  FaIndustry
+  FaIndustry,
+  FaTwitter,
+  FaPhone,
+  FaLinkedin,
+  FaFacebook,
+  FaInstagram
 } from 'react-icons/fa';
 
 export const OperationsIcons = {
@@ -41,7 +46,17 @@ export const ContactIcons = {
   Suppliers: <FaTruck className="text-secondary" size={20} />,
   HR: <FaUsers className="text-secondary" size={20} />,
   Press: <FaNewspaper className="text-secondary" size={20} />,
-  Ethics: <FaShieldAlt className="text-secondary" size={20} />
+  Ethics: <FaShieldAlt className="text-secondary" size={20} />,
+};
+
+export const FooterIcons = {
+  LinkedIn: <FaLinkedin className="text-secondary" size={20} />,
+  Facebook: <FaFacebook className="text-secondary" size={20} />,
+  Twitter: <FaTwitter className="text-secondary" size={20} />,
+  Instagram: <FaInstagram className="text-secondary" size={20} />,
+  Location: <FaMapMarkerAlt className="text-secondary" size={20} />,
+  Phone: <FaPhone className="text-secondary" size={20} />,
+  Email: <FaEnvelope className="text-secondary" size={20} />
 };
 
 export const VerMasIcon = <FaArrowRight size={20} />;

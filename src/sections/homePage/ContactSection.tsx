@@ -19,7 +19,7 @@ export default function ContactSection() {
   const recentNews = newsItems.slice(0, 2);
 
   return (
-    <section id="contact" className="py-24 bg-light select-none">
+    <section id="contact" className="pt-24 pb-12 bg-light select-none">
       <div className="container mx-auto px-4">
         <Title title="Contacto" type="primary" />
         
