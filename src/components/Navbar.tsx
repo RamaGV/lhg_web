@@ -78,7 +78,7 @@ const Navbar: React.FC = () => {
     width: '100%',
     zIndex: 9999,
     transition: 'all 0.3s',
-    backgroundColor: scrolled ? '#121827' : 'transparent',
+    backgroundColor: scrolled ? '#303030' : 'transparent',
     boxShadow: scrolled ? '0 10px 30px -10px rgba(18, 24, 39, 0.3)' : 'none',
     padding: scrolled ? '2px 0' : '8px 0',
     WebkitTransform: 'translate3d(0,0,0)', 
@@ -134,7 +134,7 @@ const Navbar: React.FC = () => {
           <div 
             className="md:hidden w-full"
             style={{ 
-              backgroundColor: '#121827', 
+              backgroundColor: '#252525', 
               position: 'absolute',
               width: '100%',
               left: 0,
@@ -149,7 +149,12 @@ const Navbar: React.FC = () => {
                 <button
                   key={item.sectionId}
                   onClick={() => scrollToSection(item.sectionId)}
-                  className="block w-full text-left px-4 py-2 rounded-md text-sm font-medium text-white hover:text-secondary active:text-secondary transition-colors duration-3000 bg-transparent active:translate-y-0.5"
+                  className="
+                    block w-full px-4 py-2 
+                    text-left 
+                    rounded-md text-sm font-medium text-white hover:text-secondary active:text-secondary 
+                    transition-colors duration-3000 bg-transparent active:translate-y-0.5
+                  "
                 >
                   {item.name}
                 </button>
