@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaLeaf, FaIndustry, FaGlobeAmericas, FaCheck, FaHistory, FaUsers, FaShip, FaMapMarkedAlt } from 'react-icons/fa';
+import { FaLeaf, FaIndustry, FaGlobeAmericas, FaCheck, FaUsers, FaShip, FaMapMarkedAlt } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 
 const QuienesSomos: React.FC = () => {

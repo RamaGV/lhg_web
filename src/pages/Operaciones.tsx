@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaArrowLeft, FaMountain, FaShip, FaIndustry, FaCogs, FaLeaf, FaCheckCircle, FaCubes, FaWater, FaRoad, FaTree, FaMapMarkerAlt, FaWarehouse, FaExchangeAlt, FaGlobeAmericas } from 'react-icons/fa';
+import { FaArrowLeft, FaMountain, FaShip, FaIndustry, FaCogs, FaLeaf, FaCheckCircle, FaWater, FaTree, FaMapMarkerAlt, FaWarehouse, FaExchangeAlt, FaGlobeAmericas } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 

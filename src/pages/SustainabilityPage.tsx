@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaWater, FaSeedling, FaRegLightbulb, FaChartLine, FaShieldAlt, FaTree, FaHandHoldingHeart } from 'react-icons/fa';
+import { FaWater, FaSeedling, FaRegLightbulb, FaChartLine, FaTree, FaHandHoldingHeart } from 'react-icons/fa';
 
 const SustainabilityPage: React.FC = () => {
   const initiatives = [
