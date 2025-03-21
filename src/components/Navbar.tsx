@@ -153,7 +153,7 @@ const Navbar: React.FC = () => {
                     block w-full px-4 py-2 
                     text-left 
                     rounded-md text-sm font-medium text-white hover:text-secondary active:text-secondary 
-                    transition-colors duration-3000 bg-transparent active:translate-y-0.5
+                    transition-colors duration-1000 bg-transparent active:translate-y-0.5
                   "
                 >
                   {item.name}

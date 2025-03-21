@@ -132,7 +132,7 @@ export default function OperationsSection() {
               <div className="flex justify-center mt-8">
                 <VerMasButton
                   text="Conocer más sobre nuestras operaciones" 
-                  to="/operaciones" 
+                  to="https://lhgmining.com.br/es/operaciones/" 
                   type="primary"
                 />
               </div>

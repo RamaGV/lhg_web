@@ -62,7 +62,7 @@ export default function SustainabilitySection() {
             <div className="text-center mt-16">
               <VerMasButton
                 text="Conocer más" 
-                to="/sustentibilidad" 
+                to="https://lhgmining.com.br/es/sostenibilidad/" 
                 type="primary"
               />
             </div>

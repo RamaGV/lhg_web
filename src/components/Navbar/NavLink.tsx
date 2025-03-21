@@ -32,7 +32,7 @@ const NavLink: React.FC<NavLinkProps> = ({
       key={sectionId}
       onClick={handleClick}
       className={`
-        transition-colors duration-3000 
+        transition-colors duration-1000 
         flex-1 text-center whitespace-nowrap px-2 sm:px-3
         ${isScrolled ? 'text-sm md:text-lg font-light' : 'text-base md:text-xl'} 
         ${isPressed ? 'text-secondary' : isScrolled ? 'text-light' : 'text-light/90'}

@@ -34,49 +34,48 @@ export const newsItems = [
     title: "LHG Mining lanza primer Reporte de Sustentabilidad",
     summary: "LHG Mining presenta su primer reporte de sostenibilidad, destacando iniciativas, estrategias y acciones en materia de medio ambiente, producción e inversión durante 2023, y estableciendo ambiciosas metas para 2024.",
     imageUrl: "/news/Rede-Sustentabilidade.jpg",
-    link: "/noticias/#reporte-sustentabilidad"
+    link: "https://lhgmining.com.br/es/2024/03/25/lhg-mining-lanza-primer-reporte-de-sustentabilidad/"
   },
   {
     id: "patrocina-moinho",
     title: "LHG Mining patrocina R$ 500.000 para el Instituto Moinho Cultural Sul-Americano en Corumbá (MS)",
     summary: "LHG Mining anuncia un patrocinio de R$ 500.000 al Instituto Moinho Cultural Sul-Americano, impulsando iniciativas culturales y educativas en Corumbá (MS).",
     imageUrl: "/news/moinho.png",
-    link: "/noticias/#patrocina-moinho"
+    link: "https://lhgmining.com.br/es/2024/01/10/lhg-mining-patrocina-r-500-000-para-el-instituto-moinho-cultural-sul-americano-en-corumba-ms/"
   },
   {
     id: "congreso-derecho-ambiental",
     title: "LHG Mining participa en el I Congreso de Derecho Ambiental de OAB MG",
-    date: "27 de septiembre de 2023",
     summary: "LHG Mining participó en el I Congreso de Derecho Ambiental de OAB MG, donde la abogada Tagie Assenheimer, especialista en Derecho Minero, se unió a expertos para debatir estrategias hacia la seguridad ambiental.",
     imageUrl: "/news/WhatsApp-Image-2023-10-27-at-13.57.47.jpeg",
-    link: "/noticias/#congreso-derecho-ambiental"
+    link: "https://lhgmining.com.br/es/2023/09/27/lhg-mining-participa-en-el-i-congreso-de-derecho-ambiental-de-oab-mg/"
   },
   {
     id: "amplia-contrataciones",
     title: "JF amplía contrataciones en Corumbá y recibe a 600 nuevos empleados",
     summary: "JF refuerza su presencia en Mato Grosso do Sul al incorporar a 600 nuevos empleados, en una estrategia que apunta a modernizar y expandir sus operaciones en la región.",
     imageUrl: "/news/Funcionarios-em-Corumba-MS.jpg",
-    link: "/noticias/#amplia-contrataciones"
+    link: "https://lhgmining.com.br/es/2023/03/31/jf-amplia-contrataciones-en-corumba-estado-de-mato-grosso-do-sul-y-recibe-a-600-nuevos-empleados/"
   },
   {
     id: "transbordo-hierro",
     title: "LHG Mining realiza la primera operación de transbordo de mineral de hierro en un único navío",
     summary: "LHG Mining ejecutó por primera vez una operación de transbordo, cargando 175 mil toneladas de mineral de hierro en un único navío capesize, lo que marca un hito en la exportación desde Corumbá y permite reducir el flete marítimo hasta en un 15%.",
     imageUrl: "/news/mapa_jef_recorte-1280x694.png",
-    link: "/noticias/#transbordo-hierro"
+    link: "https://lhgmining.com.br/es/2023/03/31/jf-mineracao-realiza-la-primera-operacion-de-transbordo-de-mineral-de-hierro-en-un-unico-navio/"
   },
   {
     id: "reanuda-manganeso",
     title: "LHG Mining reanuda la producción de manganeso y contrata empleados en Corumbá (Estado de Mato Grosso do Sul)",
     summary: "LHG Mining reanuda la producción de manganeso en la mina de Urucum en Corumbá, contratando 100 empleados directos para impulsar la producción a 450 mil toneladas en 2023, con proyección de alcanzar 600 mil.",
     imageUrl: "/news/Lavra-subterranea-manganes-mina-Urucum--1280x720.jpg",
-    link: "/noticias/#reanuda-manganeso"
+    link: "https://lhgmining.com.br/es/2023/03/31/jf-mineracao-reanuda-la-produccion-de-manganeso-y-contrata-empleados-en-corumba-estado-de-mato-grosso-do-sul/"
   },
   {
     id: "recuperacion-areas",
     title: "Recuperación de áreas recibe refuerzo en la operación de J&J Mineração en Corumbá (Estado de Mato Grosso do Sul)",
     summary: "LHG Mining refuerza la recuperación de áreas en la operación de J&J Mineração en Corumbá, incorporando un equipo de hidrosiembra que agiliza el replantado de especies nativas del Pantanal y fija una meta de recuperar 11,3 hectáreas en 2023.",
     imageUrl: "/news/rcuperacion-areas/hidrosemeadura1.jpg",
-    link: "/noticias/#recuperacion-areas"
+    link: "https://lhgmining.com.br/es/2023/03/31/recuperacion-de-areas-recibe-refuerzo-en-la-operacion-de-jj-mineracao-en-corumba-estado-de-mato-grosso-do-sul/"
   }
 ]; 

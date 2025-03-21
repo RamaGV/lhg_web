@@ -28,6 +28,27 @@ const VerMasButton: React.FC<VerMasButtonProps> = ({
     secondary: "bg-primary-dark/90 text-white hover:text-secondary shadow-xl shadow-primary-dark/40 hover:shadow-lg hover:shadow-primary-dark/50"
   };
 
+  const isExternalUrl = to.startsWith('http://') || to.startsWith('https://');
+
+  if (isExternalUrl) {
+    return (
+      <a 
+        href={to}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`
+          ${baseClasses} 
+          ${typeClasses[type]}
+        `}
+      >
+        {text}
+        <span className="ml-2 sm:ml-3 transform group-hover:translate-x-1 transition-transform duration-300">
+          {VerMasIcon}
+        </span>
+      </a>
+    );
+  }
+
   return (
     <Link 
       to={to} 

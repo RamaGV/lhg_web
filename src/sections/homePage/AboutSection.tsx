@@ -48,7 +48,7 @@ export default function AboutSection() {
               {/* Call to action */}
               <VerMasButton 
                 text="Conocer más sobre nosotros" 
-                to="/quienes-somos" 
+                to="https://lhgmining.com.br/es/quienes-somos/" 
                 type="secondary"
               />
             </div>

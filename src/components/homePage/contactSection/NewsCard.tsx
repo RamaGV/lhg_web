@@ -8,6 +8,32 @@ interface NewsCardProps {
 }
 
 const NewsCard: React.FC<NewsCardProps> = ({ title, summary, imageUrl, link }) => {
+  const isExternalUrl = link.startsWith('http://') || link.startsWith('https://');
+
+  const LinkComponent = isExternalUrl ? (
+    <a 
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-secondary font-medium hover:underline inline-flex items-center text-sm sm:text-base"
+    >
+      Leer más
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+      </svg>
+    </a>
+  ) : (
+    <Link 
+      to={link} 
+      className="text-secondary font-medium hover:underline inline-flex items-center text-sm sm:text-base"
+    >
+      Leer más
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+      </svg>
+    </Link>
+  );
+
   return (
     <div className="
       bg-white rounded-xl shadow-md 
@@ -38,15 +64,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ title, summary, imageUrl, link }) =
         ">
           {summary}
         </p>
-        <Link 
-          to={link} 
-          className="text-secondary font-medium hover:underline inline-flex items-center text-sm sm:text-base"
-        >
-          Leer más
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </Link>
+        {LinkComponent}
       </div>
     </div>
   );
